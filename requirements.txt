@@ -1,0 +1,21 @@
+# Core Django (only install what's missing)
+Django==3.0.6
+asgiref==3.2.7
+sqlparse==0.3.1
+pytz==2019.3
+
+# TinyMCE Editor
+django-tinymce4-lite==1.8.0
+jsmin==3.0.1
+
+# Machine Learning & Data Science (use already installed versions)
+# numpy - already installed
+# pandas - already installed  
+scikit-learn
+
+# Web Scraping (already installed)
+# selenium - already installed
+
+# Utilities (already installed)
+# python-dateutil - already installed
+# six - already installed

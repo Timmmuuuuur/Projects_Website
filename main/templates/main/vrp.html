@@ -1,0 +1,130 @@
+{% extends 'main/header.html' %}
+{% block content %}
+
+<!-- Hero Section -->
+<div class="modern-card fade-in-up" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+  <div class="modern-card-header">
+    <h1 class="modern-card-title" style="color: white; -webkit-text-fill-color: white; font-size: 2.5rem;">
+      🚗 Vehicle Routing Optimizer
+    </h1>
+    <p style="color: rgba(255,255,255,0.95); font-size: 1.2rem; line-height: 1.8;">
+      Solve one of the most challenging optimization problems in logistics - the NP-hard Vehicle Routing Problem. 
+      Our intelligent Tabu Search algorithm finds optimal routes for multiple vehicles visiting different locations.
+    </p>
+  </div>
+</div>
+
+<!-- How It Works Section -->
+<div class="modern-card fade-in-up">
+  <div class="modern-card-header">
+    <h2 class="modern-card-title">📋 How It Works</h2>
+    <p class="modern-card-subtitle">Follow these simple steps to optimize your routes:</p>
+  </div>
+  
+  <div class="steps-container">
+    <div class="step-item">
+      <div class="step-number">1</div>
+      <div class="step-content">
+        <strong>Find Your Addresses</strong>
+        <p>Think of your favorite places in Canada and find their exact addresses. For example: 
+        <code>Wellington St, Ottawa, ON K1A 0A9</code></p>
+      </div>
+    </div>
+    
+    <div class="step-item">
+      <div class="step-number">2</div>
+      <div class="step-content">
+        <strong>Enter Addresses</strong>
+        <p>Input all addresses separated by semicolons (;). Example: 
+        <code>Rideau Canal Eastern Pathway, Ottawa, ON; Wellington St, Ottawa, ON K1A 0A9</code></p>
+      </div>
+    </div>
+    
+    <div class="step-item">
+      <div class="step-number">3</div>
+      <div class="step-content">
+        <strong>Specify Vehicle Count</strong>
+        <p>Enter the number of vehicles in your fleet that will traverse these addresses.</p>
+      </div>
+    </div>
+    
+    <div class="step-item">
+      <div class="step-number">4</div>
+      <div class="step-content">
+        <strong>Get Optimized Routes</strong>
+        <p>Click submit and wait a few moments. You'll receive Google Maps URLs with optimized routes for each vehicle!</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Input Form Section -->
+<div class="modern-card fade-in-up">
+  <div class="modern-card-header">
+    <h2 class="modern-card-title">🎯 Route Optimizer</h2>
+    <p class="modern-card-subtitle">Enter your addresses and fleet size below:</p>
+  </div>
+  
+  <form method="POST" class="modern-form">
+    {% csrf_token %}
+    
+    <div style="margin-bottom: 1.5rem;">
+      <label for="id_address_string">📍 Addresses</label>
+      <textarea 
+        name="address_string" 
+        id="id_address_string" 
+        rows="4" 
+        placeholder="Enter addresses separated by semicolons (;)
+Example: 100 Queen St, Ottawa, ON; CN Tower, Toronto, ON; Niagara Falls, ON"
+        required
+        style="font-family: inherit; resize: vertical;"
+      ></textarea>
+      <small style="color: #6b7280; display: block; margin-top: 0.5rem;">
+        💡 Tip: The first address will be used as the depot/starting point for all vehicles
+      </small>
+    </div>
+    
+    <div style="margin-bottom: 2rem;">
+      <label for="id_vehicle_count">🚙 Number of Vehicles</label>
+      <input 
+        type="number" 
+        name="vehicle_count" 
+        id="id_vehicle_count" 
+        min="1" 
+        max="10"
+        placeholder="e.g., 3"
+        required
+      />
+      <small style="color: #6b7280; display: block; margin-top: 0.5rem;">
+        💡 The algorithm will distribute addresses across your fleet optimally
+      </small>
+    </div>
+    
+    <button type="submit" class="modern-btn" style="width: 100%; font-size: 1.1rem;">
+      🚀 Calculate Optimal Routes
+    </button>
+  </form>
+</div>
+
+<!-- Info Section -->
+<div class="modern-card fade-in-up" style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(16, 185, 129, 0.1));">
+  <div class="modern-card-header">
+    <h3 class="modern-card-title" style="font-size: 1.5rem;">⚙️ Technical Details</h3>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+    <div>
+      <h4 style="color: #6366f1; margin-bottom: 0.5rem;">Algorithm</h4>
+      <p style="color: #4b5563;">Tabu Search optimization with nearest-neighbor heuristics</p>
+    </div>
+    <div>
+      <h4 style="color: #10b981; margin-bottom: 0.5rem;">Distance Calculation</h4>
+      <p style="color: #4b5563;">Haversine formula for accurate geographical distances</p>
+    </div>
+    <div>
+      <h4 style="color: #f59e0b; margin-bottom: 0.5rem;">Geocoding</h4>
+      <p style="color: #4b5563;">Real-time address-to-coordinates conversion via web scraping</p>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,12 @@
+{% if user.is_authenticated %}
+    <li><a href="/account">{{user.username|title}}</a></li>
+    <li><a href="/logout">Log out</a></li>
+    <li><a href="/vrp">Vehicles!</a></li>
+
+{% else %}
+    <li><a href="/">Homepage</a></li>
+    <li><a href="/login">Login</a></li>
+    <li><a href="/register">Register</a></li>
+    <li><a href="/vrp">Vehicles!</a></li>
+    <li><a href="/uni_admin">Grad School Admissions!</a></li>
+{% endif %}

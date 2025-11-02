@@ -1,0 +1,33 @@
+{% if message.tags == 'success'%}
+    <script>
+        M.toast({
+            html: '<i class="material-icons" style="margin-right: 8px;">check_circle</i>{{message|safe}}', 
+            classes: 'green darken-1 rounded', 
+            displayLength: 5000
+        });
+    </script>
+{% elif message.tags == 'info'%}
+    <script>
+        M.toast({
+            html: '<i class="material-icons" style="margin-right: 8px;">info</i>{{message|safe}}', 
+            classes: 'blue darken-1 rounded', 
+            displayLength: 10000
+        });
+    </script>
+{% elif message.tags == 'warning'%}
+    <script>
+        M.toast({
+            html: '<i class="material-icons" style="margin-right: 8px;">warning</i>{{message|safe}}', 
+            classes: 'orange darken-1 rounded', 
+            displayLength: 180000
+        });
+    </script>
+{% elif message.tags == 'error'%}
+    <script>
+        M.toast({
+            html: '<i class="material-icons" style="margin-right: 8px;">error</i>{{message|safe}}', 
+            classes: 'red darken-1 rounded', 
+            displayLength: 10000
+        });
+    </script>
+{% endif %}

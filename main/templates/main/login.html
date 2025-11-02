@@ -1,0 +1,40 @@
+{% extends 'main/header.html' %}
+
+{% block content %}
+
+<div style="max-width: 500px; margin: 3rem auto;">
+  <!-- Login Card -->
+  <div class="modern-card fade-in-up">
+    <div class="modern-card-header text-center">
+      <h1 class="modern-card-title" style="font-size: 2rem;">🔐 Welcome Back</h1>
+      <p class="modern-card-subtitle">Sign in to access your account</p>
+    </div>
+    
+    <form method="POST" class="modern-form" style="padding: 0;">
+      {% csrf_token %}
+      
+      <div style="margin-bottom: 1.5rem;">
+        <label for="id_username">👤 Username</label>
+        {{ form.username }}
+      </div>
+      
+      <div style="margin-bottom: 1.5rem;">
+        <label for="id_password">🔑 Password</label>
+        {{ form.password }}
+      </div>
+      
+      <button type="submit" class="modern-btn" style="width: 100%; font-size: 1.1rem; margin-top: 1rem;">
+        Sign In
+      </button>
+    </form>
+    
+    <div style="margin-top: 2rem; text-align: center; padding-top: 1.5rem; border-top: 2px solid #e5e7eb;">
+      <p style="color: #6b7280; margin: 0;">
+        Don't have an account? 
+        <a href="/register" class="auth-link">Create one here</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

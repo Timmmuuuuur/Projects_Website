@@ -1,0 +1,60 @@
+{% extends 'main/header.html' %}
+
+{% block content %}
+
+<div style="max-width: 500px; margin: 3rem auto;">
+  <!-- Register Card -->
+  <div class="modern-card fade-in-up">
+    <div class="modern-card-header text-center">
+      <h1 class="modern-card-title" style="font-size: 2rem;">✨ Create Account</h1>
+      <p class="modern-card-subtitle">Join to access all features</p>
+    </div>
+    
+    <form method="POST" class="modern-form" style="padding: 0;">
+      {% csrf_token %}
+      
+      <div style="margin-bottom: 1.5rem;">
+        <label for="id_username">👤 Username</label>
+        {{ form.username }}
+        {% if form.username.help_text %}
+        <small style="color: #6b7280; display: block; margin-top: 0.5rem;">
+          {{ form.username.help_text }}
+        </small>
+        {% endif %}
+      </div>
+      
+      <div style="margin-bottom: 1.5rem;">
+        <label for="id_email">📧 Email Address</label>
+        {{ form.email }}
+      </div>
+      
+      <div style="margin-bottom: 1.5rem;">
+        <label for="id_password1">🔑 Password</label>
+        {{ form.password1 }}
+        {% if form.password1.help_text %}
+        <small style="color: #6b7280; display: block; margin-top: 0.5rem;">
+          {{ form.password1.help_text }}
+        </small>
+        {% endif %}
+      </div>
+      
+      <div style="margin-bottom: 1.5rem;">
+        <label for="id_password2">🔐 Confirm Password</label>
+        {{ form.password2 }}
+      </div>
+      
+      <button type="submit" class="modern-btn modern-btn-secondary" style="width: 100%; font-size: 1.1rem; margin-top: 1rem;">
+        Create Account
+      </button>
+    </form>
+    
+    <div style="margin-top: 2rem; text-align: center; padding-top: 1.5rem; border-top: 2px solid #e5e7eb;">
+      <p style="color: #6b7280; margin: 0;">
+        Already have an account? 
+        <a href="/login" class="auth-link">Sign in here</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

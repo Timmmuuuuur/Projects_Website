@@ -1,0 +1,150 @@
+{% extends 'main/header.html' %}
+{% block content %}
+
+<!-- Hero Section -->
+<div class="modern-card fade-in-up" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white;">
+  <div class="modern-card-header">
+    <h1 class="modern-card-title" style="color: white; -webkit-text-fill-color: white; font-size: 2.5rem;">
+      🎓 Graduate School Admission Predictor
+    </h1>
+    <p style="color: rgba(255,255,255,0.95); font-size: 1.2rem; line-height: 1.8;">
+      Powered by machine learning, this predictor estimates your chances of getting into graduate school 
+      based on real admission data from hundreds of universities and programs.
+    </p>
+  </div>
+</div>
+
+<!-- How It Works Section -->
+<div class="modern-card fade-in-up">
+  <div class="modern-card-header">
+    <h2 class="modern-card-title">📊 How It Works</h2>
+    <p class="modern-card-subtitle">Three simple steps to predict your admission chances:</p>
+  </div>
+  
+  <div class="steps-container">
+    <div class="step-item">
+      <div class="step-number">1</div>
+      <div class="step-content">
+        <strong>University Ranking</strong>
+        <p>Find and average the rankings of your target university/program from major ranking sources 
+        (e.g., QS World Rankings, Times Higher Education, US News). Enter a value between 1-4, 
+        where 1 is the highest prestige.</p>
+      </div>
+    </div>
+    
+    <div class="step-item">
+      <div class="step-number">2</div>
+      <div class="step-content">
+        <strong>Enter Your Credentials</strong>
+        <p>Input your GPA (on a 4.0 scale) and GRE score (typically 260-340). Be honest with your scores 
+        for the most accurate prediction!</p>
+      </div>
+    </div>
+    
+    <div class="step-item">
+      <div class="step-number">3</div>
+      <div class="step-content">
+        <strong>Get Your Probability</strong>
+        <p>Our logistic regression model, trained on 400+ real admission records, will calculate your 
+        admission probability instantly!</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Input Form Section -->
+<div class="modern-card fade-in-up">
+  <div class="modern-card-header">
+    <h2 class="modern-card-title">🎯 Admission Calculator</h2>
+    <p class="modern-card-subtitle">Enter your academic credentials below:</p>
+  </div>
+  
+  <form method="POST" class="modern-form">
+    {% csrf_token %}
+    
+    <div style="margin-bottom: 1.5rem;">
+      <label for="id_gre">📝 GRE Score</label>
+      <input 
+        type="number" 
+        name="gre" 
+        id="id_gre" 
+        min="260" 
+        max="340"
+        step="1"
+        placeholder="e.g., 320"
+        required
+      />
+      <small style="color: #6b7280; display: block; margin-top: 0.5rem;">
+        💡 GRE scores typically range from 260 to 340
+      </small>
+    </div>
+    
+    <div style="margin-bottom: 1.5rem;">
+      <label for="id_gpa">📚 GPA (out of 4.0)</label>
+      <input 
+        type="number" 
+        name="gpa" 
+        id="id_gpa" 
+        min="0" 
+        max="4.0"
+        step="0.01"
+        placeholder="e.g., 3.75"
+        required
+      />
+      <small style="color: #6b7280; display: block; margin-top: 0.5rem;">
+        💡 Enter your GPA on a 4.0 scale
+      </small>
+    </div>
+    
+    <div style="margin-bottom: 2rem;">
+      <label for="id_rank">🏆 Institution Rank (1-4)</label>
+      <input 
+        type="number" 
+        name="rank" 
+        id="id_rank" 
+        min="1" 
+        max="4"
+        placeholder="e.g., 2"
+        required
+      />
+      <small style="color: #6b7280; display: block; margin-top: 0.5rem;">
+        💡 1 = Top-tier (e.g., MIT, Stanford), 4 = Lower-tier universities
+      </small>
+    </div>
+    
+    <button type="submit" class="modern-btn modern-btn-secondary" style="width: 100%; font-size: 1.1rem;">
+      🔮 Calculate My Chances
+    </button>
+  </form>
+</div>
+
+<!-- Model Info Section -->
+<div class="modern-card fade-in-up" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.1));">
+  <div class="modern-card-header">
+    <h3 class="modern-card-title" style="font-size: 1.5rem;">🤖 About the Model</h3>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+    <div>
+      <h4 style="color: #10b981; margin-bottom: 0.5rem;">Algorithm</h4>
+      <p style="color: #4b5563;">Logistic Regression classifier for binary prediction</p>
+    </div>
+    <div>
+      <h4 style="color: #6366f1; margin-bottom: 0.5rem;">Training Data</h4>
+      <p style="color: #4b5563;">400+ real graduate admission records</p>
+    </div>
+    <div>
+      <h4 style="color: #f59e0b; margin-bottom: 0.5rem;">Features</h4>
+      <p style="color: #4b5563;">GRE score, GPA, and institution ranking</p>
+    </div>
+  </div>
+  
+  <div style="margin-top: 1.5rem; padding: 1rem; background: white; border-radius: 10px;">
+    <p style="color: #6b7280; font-size: 0.95rem; margin: 0;">
+      <strong>⚠️ Disclaimer:</strong> This is a predictive model based on historical data and should be used as a 
+      general guideline only. Actual admission decisions depend on many other factors including research experience, 
+      letters of recommendation, statement of purpose, and more.
+    </p>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timur's Portfolio - Computer Engineering Projects</title>
+    {% load static %}
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Prism CSS -->
+    <link href="{% static "tinymce/css/prism.css" %}" rel="stylesheet">
+    
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    
+    <!-- Custom Modern CSS -->
+    <link rel="stylesheet" href="{% static 'main/css/custom.css' %}">
+    
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <!-- Compiled and minified JavaScript for Materialize CSS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</head>
+
+<body>
+  <nav class="modern-nav">
+    <div class="nav-wrapper">
+      <a href="/" class="brand-logo">✨ Timur's Projects</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        {% include 'main/includes/navbar.html'%}
+      </ul>
+    </div>
+  </nav>
+  
+  {% if messages %}
+    {% for message in messages %}
+        {% include 'main/includes/messaging.html'%}
+    {% endfor %}
+  {% endif %}
+  
+  <div class="modern-container">
+      {% block content %}
+      {% endblock %}
+  </div>
+</body>
+
+<!-- Prism JS -->
+<script src="{% static "tinymce/js/prism.js" %}"></script>
+</html>

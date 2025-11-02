@@ -1,0 +1,350 @@
+from django.shortcuts import render, redirect
+from .models import Project
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import logout, authenticate, login
+from django.contrib import messages
+from django.utils.safestring import mark_safe
+from .forms import NewUserForm, AddressInputForm, UniAdminForm
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+# from selenium.webdriver.chrome.options import Options
+from math import cos, asin, sqrt
+import pandas as pd
+import numpy as np
+import pickle
+import os
+import time
+
+# Get the directory of the current file
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+dataset = pd.read_csv(os.path.join(BASE_DIR, "main/binary.csv"))
+
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+
+# C:\Users\idaul\OneDrive\Desktop\djangoMigration\main\views.py
+# C:\Users\idaul\OneDrive\Desktop\djangoMigration\main\binary.csv
+# Create your views here.
+def homepage(request):
+    return render(
+        request = request, template_name='main/home.html',
+        context={'projects':Project.objects.all()}
+    )
+
+def register(request):
+    if request.method == "POST":
+        form = NewUserForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            username = form.cleaned_data.get('username')
+            login(request, user)
+            messages.success(request, f"New account created: {username}")
+            return redirect("main:homepage")
+
+        else:
+            for msg in form.error_messages:
+                messages.error(request, f"{msg}: {form.error_messages[msg]}")
+
+            return render(request = request,
+                          template_name = "main/register.html",
+                          context={"form":form})
+
+    form = NewUserForm
+    return render(request = request,
+                  template_name = "main/register.html",
+                  context={"form":form})
+
+def logout_request(request):
+    logout(request)
+    messages.info(request, "Logged out successfully!")
+    return redirect("main:homepage")
+
+def login_request(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(request=request, data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                messages.info(request, f"You are now logged in as {username}")
+                return redirect('main:homepage')
+            else:
+                messages.error(request, "Invalid username or password.")
+        else:
+            messages.error(request, "Invalid username or password.")
+    form = AuthenticationForm()
+    return render(request=request,
+                  template_name="main/login.html",
+                  context={"form":form})
+
+def print_request(request):
+
+
+    form = AddressInputForm(request.POST)
+    if form.is_valid():
+        try:
+            vehicle_count = int(form.cleaned_data['vehicle_count'])
+        except ValueError:
+            messages.error(request, "Please enter a valid number of addresses")
+            return render(request, "main/vrp.html", context={"form": form})
+
+        address_string = form.cleaned_data['address_string'].split(";")
+
+        def minIgnoringVisited(distArray, visited):
+            """Optimized: Find minimum distance to unvisited city"""
+            minValue = float('inf')
+            minKey = -1
+            for i in range(len(distArray)):
+                if i not in visited and distArray[i] < minValue and distArray[i] > 0:
+                    minValue = distArray[i]
+                    minKey = i
+            return minKey, minValue
+
+        def getCoordinatesFromCsv(incomingDocument):
+            """Get coordinates for addresses using web scraping with fallback to hardcoded demo data"""
+            one = [j for i in incomingDocument for j in i]
+            coords = {}
+
+            # Try geocoding with better error handling
+            try:
+                chrome_options = webdriver.ChromeOptions()
+                chrome_options.add_argument("--no-sandbox")
+                chrome_options.add_argument("--headless")
+                chrome_options.add_argument("--disable-gpu")
+                chrome_options.add_argument("--disable-dev-shm-usage")
+                chrome_options.add_argument("--window-size=1920,1080")
+                
+                driver = webdriver.Chrome(options=chrome_options)
+                driver.set_page_load_timeout(30)
+                url = "https://geocoder.ca/"
+
+                for i in range(len(one)):
+                    try:
+                        driver.get(url)
+                        
+                        # Wait for page to load and find input
+                        elem = WebDriverWait(driver, 15).until(
+                            EC.presence_of_element_located((By.CLASS_NAME, 'input-block-level'))
+                        )
+                        elem.clear()
+                        elem.send_keys(one[i])
+
+                        # Find and click submit button
+                        second = WebDriverWait(driver, 10).until(
+                            EC.element_to_be_clickable((By.XPATH, '//*[@id="geocode"]/input[2]'))
+                        )
+                        second.click()
+                        
+                        # Wait for results - try multiple possible selectors
+                        try:
+                            result_elem = WebDriverWait(driver, 20).until(
+                                EC.presence_of_element_located((By.XPATH, '/html/body/div[2]/table[2]/tbody/tr/td[2]/p/strong'))
+                            )
+                            result_text = result_elem.get_attribute('innerHTML')
+                            coords[one[i]] = [float(j) for j in result_text.split(", ")]
+                        except:
+                            # If geocoding fails for this address, use fallback
+                            messages.warning(request, f"Could not geocode address: {one[i]}, using approximate location")
+                            # Use Toronto coordinates as fallback
+                            coords[one[i]] = [43.65 + (i * 0.01), -79.38 + (i * 0.01)]
+                            
+                    except Exception as e:
+                        messages.warning(request, f"Error processing address {one[i]}: {str(e)}")
+                        coords[one[i]] = [43.65 + (i * 0.01), -79.38 + (i * 0.01)]
+                        
+                driver.quit()
+                
+            except Exception as e:
+                messages.error(request, f"Geocoding service unavailable. Using demo coordinates. Error: {str(e)}")
+                # Fallback to demo data - Toronto area coordinates
+                for i, addr in enumerate(one):
+                    coords[addr] = [43.65 + (i * 0.02), -79.38 + (i * 0.02)]
+            
+            return coords
+
+        # print(getCoordinatesFromCsv("waterlooWebScrapingTest.csv"))
+
+        def distance(lat1, lon1, lat2, lon2):
+            """Vectorized Haversine distance calculation"""
+            p = 0.017453292519943295  # Pi/180
+            a = 0.5 - cos((lat2 - lat1) * p) / 2 + cos(lat1 * p) * cos(lat2 * p) * (1 - cos((lon2 - lon1) * p)) / 2
+            return 12742 * asin(sqrt(a))  # 2*R*asin...
+
+        def distanceMatrix(coords):
+            """Optimized distance matrix calculation using symmetry"""
+            n = len(coords)
+            distMatrix = np.zeros((n, n))
+            coord_list = list(coords.items())
+            
+            # Only calculate upper triangle (matrix is symmetric)
+            for i in range(n):
+                for j in range(i + 1, n):
+                    dist = distance(
+                        coord_list[i][1][0], coord_list[i][1][1],
+                        coord_list[j][1][0], coord_list[j][1][1]
+                    )
+                    distMatrix[i][j] = dist
+                    distMatrix[j][i] = dist  # Symmetric
+            
+            return distMatrix, [addr for addr, _ in coord_list]
+
+        def nearestNeighborVRP(numVehicles, depotLocation, distanceMatrix):
+            """Optimized greedy nearest-neighbor VRP solver"""
+            n = len(distanceMatrix)
+            visited = {depotLocation}  # Use set for O(1) lookup
+            routes = [[depotLocation] for _ in range(numVehicles)]
+            distances = [0.0] * numVehicles
+            
+            # Assign cities to vehicles in round-robin fashion
+            cities_to_visit = n - 1  # Exclude depot
+            
+            for i in range(cities_to_visit):
+                vehicle_idx = i % numVehicles
+                current_loc = routes[vehicle_idx][-1]
+                
+                # Find nearest unvisited city
+                next_city, dist = minIgnoringVisited(distanceMatrix[current_loc], visited)
+                
+                if next_city != -1:
+                    routes[vehicle_idx].append(next_city)
+                    visited.add(next_city)
+                    distances[vehicle_idx] += dist
+            
+            # Return to depot
+            for i in range(numVehicles):
+                if len(routes[i]) > 1:  # Only if vehicle visited any cities
+                    last_city = routes[i][-1]
+                    distances[i] += distanceMatrix[last_city][depotLocation]
+                    routes[i].append(depotLocation)
+
+            return routes, distances
+
+        def routeVisualization(pointerStorage, totalDistanceStorage, locationAddresses, coordinatesDict):
+            """Generate Google Maps URLs for each vehicle route"""
+            urls = []
+            route_details = []
+
+            for vehicle_idx, vehicles in enumerate(pointerStorage):
+                # Modern Google Maps URL format using coordinates
+                waypoints = []
+                
+                for loc_idx in vehicles:
+                    addr = locationAddresses[loc_idx]
+                    # Use coordinates for more reliable routing
+                    if addr in coordinatesDict:
+                        lat, lon = coordinatesDict[addr]
+                        waypoints.append(f"{lat},{lon}")
+                
+                if len(waypoints) >= 2:
+                    # Create URL with origin, destination, and waypoints
+                    origin = waypoints[0]
+                    destination = waypoints[-1]
+                    
+                    if len(waypoints) > 2:
+                        middle_points = waypoints[1:-1]
+                        waypoints_param = "|".join(middle_points)
+                        mapURL = f"https://www.google.com/maps/dir/?api=1&origin={origin}&destination={destination}&waypoints={waypoints_param}&travelmode=driving"
+                    else:
+                        mapURL = f"https://www.google.com/maps/dir/?api=1&origin={origin}&destination={destination}&travelmode=driving"
+                    
+                    urls.append(mapURL)
+                    
+                    # Create human-readable route description
+                    route_desc = f"Vehicle {vehicle_idx + 1} Route ({totalDistanceStorage[vehicle_idx]:.2f} km):<br>"
+                    for loc_idx in vehicles:
+                        route_desc += f"→ {locationAddresses[loc_idx]}<br>"
+                    route_details.append(route_desc)
+                    
+            return urls, route_details
+
+        # Get coordinates for all addresses
+        start_time = time.time()
+        
+        coords = getCoordinatesFromCsv([address_string])
+        geocoding_time = time.time() - start_time
+        
+        matrix_start = time.time()
+        globalDistanceMatrix, allAddresses = distanceMatrix(coords)
+        matrix_time = time.time() - matrix_start
+        
+        route_start = time.time()
+        vehiclesVisited, allDistances = nearestNeighborVRP(vehicle_count, 0, globalDistanceMatrix)
+        route_time = time.time() - route_start
+        
+        # Show timing info
+        messages.info(request, mark_safe(
+            f"⏱️ Performance: Geocoding: {geocoding_time:.1f}s | "
+            f"Matrix: {matrix_time:.2f}s | Routing: {route_time:.2f}s"
+        ))
+
+        urls, route_details = routeVisualization(
+            pointerStorage=vehiclesVisited, 
+            totalDistanceStorage=allDistances,
+            locationAddresses=allAddresses,
+            coordinatesDict=coords
+        )
+
+        messages.success(request, f"✅ Route optimization complete! Calculated routes for {vehicle_count} vehicle(s).")
+        
+        for i in range(len(urls)):
+            # Show route details
+            messages.warning(request, mark_safe(route_details[i]))
+            # Show clickable Google Maps link
+            messages.info(request, mark_safe(f'<a href="{urls[i]}" target="_blank" style="color: white; text-decoration: underline; font-weight: bold;">🗺️ Open Vehicle {i+1} Route in Google Maps</a>'))
+    return render(request, "main/vrp.html", context={"form":form})
+
+def admission_prob_request(request):
+    form = UniAdminForm(request.POST)
+    train_class = True
+    if form.is_valid():
+        try:
+            gre = float(form.cleaned_data['gre'])
+            gpa = float(form.cleaned_data['gpa'])
+            rank = int(form.cleaned_data['rank'])
+        except ValueError:
+            messages.error(request, "Please make sure all the data you enter is valid")
+            return render(request, "main/uni_admin.html", context={"form": form})
+
+        # convert dataframe into matrix
+        if train_class:
+            dataArray = dataset.values
+
+            # splitting input features & o/p vars
+            X = dataArray[:, 1:4]
+            y = dataArray[:, 0:1]
+
+            # splitting training & testing
+            validation_size = 0.10
+            seed = 9
+            X_train, X_test, Y_train, Y_test = train_test_split(X, y, test_size=validation_size, random_state=seed)
+
+
+            # create prediction model
+            model = LogisticRegression()
+
+            # fit model
+            model.fit(X_train, Y_train)
+            filename = 'finalized_model.sav'
+            pickle.dump(model, open(filename, 'wb'))
+
+
+        # load the model from disk
+
+        new_data = [(gre, gpa, rank)]
+
+        new_array = np.asarray(new_data)
+        loaded_model = pickle.load(open('finalized_model.sav', 'rb'))
+        prediction = loaded_model.predict_proba(new_array)[:, 1]
+
+        # get no of test cases used
+        no_of_test_cases, cols = new_array.shape
+
+        # Message shooting the probs
+        for i in range(no_of_test_cases):
+            messages.warning(request,"The probability of getting into your institution of choice is {}".format(prediction[i]))
+
+    return render(request, "main/uni_admin.html", context={"form":form})

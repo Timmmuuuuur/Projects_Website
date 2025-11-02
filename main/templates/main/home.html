@@ -1,0 +1,96 @@
+{% extends 'main/header.html' %}
+{% block content %}
+
+<!-- Hero Section -->
+<section class="hero-section">
+  <div class="fade-in-up">
+    <h1 class="hero-title">Hi, I'm Timur! 👋</h1>
+    <h2 class="hero-subtitle">Computer Engineering Graduate @ University of Waterloo</h2>
+    
+    <div class="hero-tags">
+      <span class="hero-tag">💻 Tech Professional</span>
+      <span class="hero-tag">💪 Gym Fanatic</span>
+      <span class="hero-tag">📈 Finance Enthusiast</span>
+      <span class="hero-tag">🎮 Esports Hobbyist</span>
+    </div>
+  </div>
+</section>
+
+<!-- About Section -->
+<div class="modern-card fade-in-up">
+  <div class="modern-card-header">
+    <h2 class="modern-card-title">About Me</h2>
+    <p class="modern-card-subtitle">
+      I'm a fourth-year Computer Engineering student at the University of Waterloo, passionate about building 
+      innovative solutions that solve real-world problems. I love combining algorithms, machine learning, 
+      and web development to create impactful projects.
+    </p>
+  </div>
+</div>
+
+<!-- Projects Section -->
+<div class="modern-card fade-in-up">
+  <div class="modern-card-header">
+    <h2 class="modern-card-title">Featured Projects</h2>
+    <p class="modern-card-subtitle">
+      Check out these interactive tools that solve everyday optimization and prediction problems!
+    </p>
+  </div>
+  
+  <div class="features-grid">
+    <!-- Vehicle Routing Project -->
+    <div class="feature-card">
+      <div class="feature-icon">🚗</div>
+      <h3 class="feature-title">Vehicle Routing Optimizer</h3>
+      <p class="feature-description">
+        Solve the NP-hard Vehicle Routing Problem with an intelligent Tabu Search algorithm. 
+        Input multiple addresses and get optimized routes for your fleet instantly.
+      </p>
+      <div class="info-box">
+        <p><strong>Technologies:</strong> Python, Selenium, Haversine Algorithm, Tabu Search</p>
+        <p><strong>Use Case:</strong> Delivery optimization, Fleet management, Route planning</p>
+      </div>
+      <a href="/vrp" class="modern-btn">
+        Try it Now →
+      </a>
+    </div>
+    
+    <!-- Grad School Predictor -->
+    <div class="feature-card">
+      <div class="feature-icon">🎓</div>
+      <h3 class="feature-title">Grad School Admission Predictor</h3>
+      <p class="feature-description">
+        Machine learning-powered predictor that estimates your chances of getting into graduate school 
+        based on GRE scores, GPA, and institution ranking.
+      </p>
+      <div class="info-box">
+        <p><strong>Technologies:</strong> Logistic Regression, scikit-learn, Pandas, NumPy</p>
+        <p><strong>Dataset:</strong> Trained on 400+ real admission records</p>
+      </div>
+      <a href="/uni_admin" class="modern-btn modern-btn-secondary">
+        Check My Chances →
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Call to Action -->
+<div class="modern-card text-center fade-in-up" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+  <div class="modern-card-header">
+    <h2 style="color: white; -webkit-text-fill-color: white;">Ready to Explore?</h2>
+    <p style="color: rgba(255,255,255,0.9); font-size: 1.1rem;">
+      These projects demonstrate practical applications of algorithms and machine learning. 
+      Feel free to try them out and see the results in real-time!
+    </p>
+  </div>
+  <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem;">
+    <a href="/vrp" class="modern-btn" style="background: white; color: #667eea;">
+      🚗 Vehicle Routing
+    </a>
+    <a href="/uni_admin" class="modern-btn" style="background: rgba(255,255,255,0.2); backdrop-filter: blur(10px);">
+      🎓 Admission Predictor
+    </a>
+  </div>
+</div>
+
+{% endblock %}
