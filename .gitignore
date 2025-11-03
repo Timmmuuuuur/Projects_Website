@@ -1,0 +1,44 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+*.egg-info/
+dist/
+build/
+
+# Django
+*.log
+db.sqlite3
+*.pot
+*.pyc
+local_settings.py
+
+# Geocoding cache
+geocode_cache.json
+
+# Machine Learning models
+*.sav
+finalized_model.sav
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Resume files (sensitive)
+*Resume*.txt
+*Resume*.docx
+*Resume*.pdf
+TIMUR_DAULETOV_RESUME*.txt
+Timur_Dauletov_Resume*
+
