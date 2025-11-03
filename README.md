@@ -125,7 +125,8 @@ djangoMigration/
 ## 🎯 Key Features Explained
 
 ### Vehicle Routing Problem Solver
-- Uses Selenium to geocode addresses via web scraping
+- Uses OpenStreetMap Nominatim API for fast geocoding
+- Falls back to Selenium web scraping when needed
 - Calculates distance matrix using Haversine formula
 - Implements Tabu Search for route optimization
 - Generates Google Maps URLs for visualizing routes
@@ -156,7 +157,7 @@ The application features a modern design with:
 ## 👨‍💻 Author
 
 **Timur Dauletov**
-- Computer Engineering Student @ University of Waterloo
+- Computer Engineering Grad @ University of Waterloo
 - Passionate about algorithms, ML, and web development
 
 ## 📝 License

@@ -16,6 +16,9 @@ import numpy as np
 import pickle
 import os
 import time
+import requests
+from urllib.parse import quote
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 # Get the directory of the current file
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -104,65 +107,131 @@ def print_request(request):
                     minKey = i
             return minKey, minValue
 
-        def getCoordinatesFromCsv(incomingDocument):
-            """Get coordinates for addresses using web scraping with fallback to hardcoded demo data"""
-            one = [j for i in incomingDocument for j in i]
-            coords = {}
-
-            # Try geocoding with better error handling
+        def geocode_with_osm_nominatim(address):
+            """
+            Geocode address using OpenStreetMap's Nominatim API
+            Returns (address, (lat, lon)) tuple or (address, None) if failed
+            """
             try:
-                chrome_options = webdriver.ChromeOptions()
-                chrome_options.add_argument("--no-sandbox")
-                chrome_options.add_argument("--headless")
-                chrome_options.add_argument("--disable-gpu")
-                chrome_options.add_argument("--disable-dev-shm-usage")
-                chrome_options.add_argument("--window-size=1920,1080")
+                # OpenStreetMap Nominatim API - free and open source
+                # Searches OSM's database for address and returns coordinates
+                url = f"https://nominatim.openstreetmap.org/search"
+                params = {
+                    'q': address,
+                    'format': 'json',
+                    'limit': 1,
+                    'countrycodes': 'ca'  # Prioritize Canadian addresses
+                }
+                headers = {
+                    'User-Agent': 'VRP-Optimizer/1.0'  # Required by Nominatim
+                }
                 
-                driver = webdriver.Chrome(options=chrome_options)
-                driver.set_page_load_timeout(30)
-                url = "https://geocoder.ca/"
-
-                for i in range(len(one)):
-                    try:
-                        driver.get(url)
-                        
-                        # Wait for page to load and find input
-                        elem = WebDriverWait(driver, 15).until(
-                            EC.presence_of_element_located((By.CLASS_NAME, 'input-block-level'))
-                        )
-                        elem.clear()
-                        elem.send_keys(one[i])
-
-                        # Find and click submit button
-                        second = WebDriverWait(driver, 10).until(
-                            EC.element_to_be_clickable((By.XPATH, '//*[@id="geocode"]/input[2]'))
-                        )
-                        second.click()
-                        
-                        # Wait for results - try multiple possible selectors
-                        try:
-                            result_elem = WebDriverWait(driver, 20).until(
-                                EC.presence_of_element_located((By.XPATH, '/html/body/div[2]/table[2]/tbody/tr/td[2]/p/strong'))
-                            )
-                            result_text = result_elem.get_attribute('innerHTML')
-                            coords[one[i]] = [float(j) for j in result_text.split(", ")]
-                        except:
-                            # If geocoding fails for this address, use fallback
-                            messages.warning(request, f"Could not geocode address: {one[i]}, using approximate location")
-                            # Use Toronto coordinates as fallback
-                            coords[one[i]] = [43.65 + (i * 0.01), -79.38 + (i * 0.01)]
-                            
-                    except Exception as e:
-                        messages.warning(request, f"Error processing address {one[i]}: {str(e)}")
-                        coords[one[i]] = [43.65 + (i * 0.01), -79.38 + (i * 0.01)]
-                        
-                driver.quit()
+                response = requests.get(url, params=params, headers=headers, timeout=5)
+                response.raise_for_status()
+                data = response.json()
+                
+                if data and len(data) > 0:
+                    lat = float(data[0]['lat'])
+                    lon = float(data[0]['lon'])
+                    return (address, (lat, lon))
+                return (address, None)
                 
             except Exception as e:
-                messages.error(request, f"Geocoding service unavailable. Using demo coordinates. Error: {str(e)}")
-                # Fallback to demo data - Toronto area coordinates
-                for i, addr in enumerate(one):
+                return (address, None)
+
+        def getCoordinatesFromCsv(incomingDocument):
+            """
+            Get coordinates for addresses using OpenStreetMap Nominatim API with concurrent requests
+            Falls back to Selenium web scraping if OSM fails, then to demo data
+            """
+            one = [j for i in incomingDocument for j in i]
+            coords = {}
+            osm_success_count = 0
+            selenium_success_count = 0
+
+            # Primary Method: Concurrent OpenStreetMap Nominatim API requests
+            messages.info(request, "🗺️ Using OpenStreetMap Nominatim for geocoding...")
+            
+            # Use ThreadPoolExecutor for concurrent requests (respectful rate limiting via max_workers)
+            with ThreadPoolExecutor(max_workers=5) as executor:
+                # Submit all geocoding tasks concurrently
+                futures = {
+                    executor.submit(geocode_with_osm_nominatim, address): address 
+                    for address in one
+                }
+                
+                # Collect results as they complete
+                for future in as_completed(futures):
+                    address, result = future.result()
+                    if result:
+                        coords[address] = list(result)
+                        osm_success_count += 1
+                    else:
+                        coords[address] = None
+            
+            messages.success(request, f"✅ OpenStreetMap geocoded {osm_success_count}/{len(one)} addresses")
+
+            # Secondary Method: Selenium fallback for failed addresses
+            failed_addresses = [addr for addr, coord in coords.items() if coord is None]
+            
+            if failed_addresses:
+                messages.info(request, f"🔄 Trying Selenium fallback for {len(failed_addresses)} addresses...")
+                try:
+                    chrome_options = webdriver.ChromeOptions()
+                    chrome_options.add_argument("--no-sandbox")
+                    chrome_options.add_argument("--headless")
+                    chrome_options.add_argument("--disable-gpu")
+                    chrome_options.add_argument("--disable-dev-shm-usage")
+                    chrome_options.add_argument("--window-size=1920,1080")
+                    
+                    driver = webdriver.Chrome(options=chrome_options)
+                    driver.set_page_load_timeout(30)
+                    url = "https://geocoder.ca/"
+
+                    for address in failed_addresses:
+                        try:
+                            driver.get(url)
+                            elem = WebDriverWait(driver, 15).until(
+                                EC.presence_of_element_located((By.CLASS_NAME, 'input-block-level'))
+                            )
+                            elem.clear()
+                            elem.send_keys(address)
+
+                            second = WebDriverWait(driver, 10).until(
+                                EC.element_to_be_clickable((By.XPATH, '//*[@id="geocode"]/input[2]'))
+                            )
+                            second.click()
+                            
+                            try:
+                                result_elem = WebDriverWait(driver, 20).until(
+                                    EC.presence_of_element_located((By.XPATH, '/html/body/div[2]/table[2]/tbody/tr/td[2]/p/strong'))
+                                )
+                                result_text = result_elem.get_attribute('innerHTML')
+                                coords[address] = [float(j) for j in result_text.split(", ")]
+                                selenium_success_count += 1
+                            except:
+                                pass  # Will use demo coordinates
+                                
+                        except Exception as e:
+                            pass  # Will use demo coordinates
+                            
+                    driver.quit()
+                    
+                    if selenium_success_count > 0:
+                        messages.success(request, f"✅ Selenium geocoded {selenium_success_count} additional addresses")
+                    
+                except Exception as e:
+                    messages.warning(request, "⚠️ Selenium fallback unavailable")
+
+            # Final fallback: Demo coordinates for any remaining failures
+            demo_count = 0
+            for i, (addr, coord) in enumerate(coords.items()):
+                if coord is None:
                     coords[addr] = [43.65 + (i * 0.02), -79.38 + (i * 0.02)]
+                    demo_count += 1
+            
+            if demo_count > 0:
+                messages.warning(request, f"⚠️ Using demo coordinates for {demo_count} addresses")
             
             return coords
 

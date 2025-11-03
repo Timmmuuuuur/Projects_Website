@@ -15,6 +15,7 @@ scikit-learn
 
 # Web Scraping (already installed)
 # selenium - already installed
+requests
 
 # Utilities (already installed)
 # python-dateutil - already installed
