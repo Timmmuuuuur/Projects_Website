@@ -150,4 +150,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROUTE = '/home/dauletov/djangoMigration/main/static'
+# Production static files collection directory
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# Default primary key field type (required for Django 3.2+)
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
