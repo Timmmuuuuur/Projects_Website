@@ -157,11 +157,32 @@ DJANGO_DEBUG=false
 
 ---
 
+## 11. “Purple on localhost, blue on www.dauletov.com”
+
+That almost always means **different CSS is actually loading**, not two themes:
+
+1. **Localhost (`runserver`, `DEBUG=True`)**  
+   Django’s static finder serves `main/static/main/css/custom.css` from your repo. You get the full `custom.css`, including the **indigo → purple** gradient (`#667eea`, `#764ba2`, `#f093fb`). On some screens that reads as **purple**.
+
+2. **Production (PythonAnywhere)**  
+   CSS is served from **`STATIC_ROOT`** via the **Web → Static files** mapping (`/static/` → `…/staticfiles/`). If that mapping is wrong, `collectstatic` wasn’t run in **this** repo, or the browser cached an old file, then **`custom.css` may not apply** (404 or empty).  
+   What’s left is mostly **Materialize** (`materialize.min.css`) + browser defaults — **teal/blue-ish** navbar and a flat background. So the **live site looks “blue”** while localhost still looks **purple**.
+
+**Verify in 10 seconds:** open (adjust domain/version as needed):
+
+`https://www.dauletov.com/static/main/css/custom.css?v=6`
+
+- **200 + file starts with `/* Modern Custom Styles`** → static path works; hard-refresh or clear cache if colors still wrong.  
+- **404** → fix **Static files** mapping and run `collectstatic` in the **same** folder as Web **Source code**.
+
+---
+
 ## Summary table
 
 | Symptom | Most likely cause |
 |--------|---------------------|
 | Cursor dark, Safari purple | Different `localStorage` theme **or** Safari cached old CSS before `?v=` fix |
+| **Localhost purple, live site blue** | **Production not serving `custom.css`** (static mapping / wrong `staticfiles` / stale cache) — see §11 |
 | Live site never updates | Deploying **wrong directory** on PA vs Web tab |
 | `tinymce` missing | `collectstatic` / run without project venv |
 | Styles wrong on live only | Static files mapping → wrong `staticfiles` folder |
