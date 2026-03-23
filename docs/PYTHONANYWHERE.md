@@ -51,16 +51,26 @@ Under **Web** → **Static files**:
 
 Must match `STATIC_ROOT` in `settings.py` (project’s `staticfiles` folder **after** `collectstatic`).
 
-## 4. Reload
+## 4. Production debug
+
+In **Web** → **Environment variables**, add:
+
+```text
+DJANGO_DEBUG=false
+```
+
+This turns off Django debug mode on the server (recommended). Local dev leaves `DJANGO_DEBUG` unset so it stays `True`.
+
+## 5. Reload
 
 After deploy: **Web** → **Reload** your `www.dauletov.com` app.
 
-## 5. Two themes
+## 6. Two themes
 
 - **Default (purple gradient)** is normal; that is the “light” theme.
 - Click the **moon** button (bottom-right) for the **terminal / neon** theme.
 - Preference is stored in `localStorage` per browser.
 
-## 6. Browser cache
+## 7. Browser cache
 
 CSS is loaded as `custom.css?v=STATIC_ASSET_VERSION`. If styles look stale, bump `STATIC_ASSET_VERSION` in `settings.py`, deploy again, and reload.

@@ -23,12 +23,19 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'jz8z$a34q*g4)h^%f@_v61)o0h#tgaczn5asu17lbek-+=3)am'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# On PythonAnywhere set Web → Environment variable: DJANGO_DEBUG=false
+DEBUG = os.environ.get("DJANGO_DEBUG", "True").lower() in ("1", "true", "yes")
 
 # Bump this when you change CSS/JS so Safari/Firefox pick up new static files (cache bust).
 STATIC_ASSET_VERSION = os.environ.get("STATIC_ASSET_VERSION", "5")
 
-ALLOWED_HOSTS = ['www.dauletov.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = [
+    "www.dauletov.com",
+    "dauletov.com",
+    "localhost",
+    "127.0.0.1",
+    ".pythonanywhere.com",  # username.pythonanywhere.com etc.
+]
 
 
 # Application definition
