@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Timur's Portfolio - Computer Engineering Projects</title>
     {% load static %}
+    {% if debug %}
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    {% endif %}
     
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -15,8 +19,8 @@
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     
-    <!-- Custom Modern CSS -->
-    <link rel="stylesheet" href="{% static 'main/css/custom.css' %}">
+    <!-- Custom Modern CSS (?v= forces fresh download when STATIC_ASSET_VERSION bumps) -->
+    <link rel="stylesheet" href="{% static 'main/css/custom.css' %}?v={{ STATIC_ASSET_VERSION }}">
     
     <!-- Material Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
