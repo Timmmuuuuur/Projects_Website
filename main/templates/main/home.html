@@ -4,7 +4,9 @@
 <!-- Hero Section -->
 <section class="hero-section">
   <div class="fade-in-up">
-    <h1 class="hero-title">Hi, I'm Timur! 👋</h1>
+    <h1 class="hero-title">
+      <span class="typing-animation">Hi, I'm Timur! 👋</span>
+    </h1>
     <h2 class="hero-subtitle">Computer Engineering Grad @ University of Waterloo</h2>
     
     <div class="hero-tags">
@@ -33,7 +35,7 @@
 </section>
 
 <!-- About Section -->
-<div class="modern-card fade-in-up" style="animation-delay: 0.1s;">
+<div class="modern-card fade-in-up terminal-window" style="animation-delay: 0.1s;">
   <div class="modern-card-header">
     <h2 class="modern-card-title">About Me</h2>
     <p class="modern-card-subtitle" style="font-size: 1.15rem; line-height: 1.8;">
@@ -57,7 +59,7 @@
 </div>
 
 <!-- Projects Section -->
-<div class="modern-card fade-in-up" style="animation-delay: 0.2s;">
+<div class="modern-card fade-in-up terminal-window" style="animation-delay: 0.2s;">
   <div class="modern-card-header">
     <h2 class="modern-card-title">Featured Projects</h2>
     <p class="modern-card-subtitle">
@@ -192,5 +194,27 @@
     </div>
   </div>
 </div>
+
+<!-- Typing Animation Script -->
+<script>
+  // Simple typing animation
+  const typingElement = document.querySelector('.typing-animation');
+  if (typingElement) {
+    const text = typingElement.textContent;
+    typingElement.textContent = '';
+    let i = 0;
+    
+    function typeWriter() {
+      if (i < text.length) {
+        typingElement.textContent += text.charAt(i);
+        i++;
+        setTimeout(typeWriter, 100);
+      }
+    }
+    
+    // Start typing after page loads
+    setTimeout(typeWriter, 500);
+  }
+</script>
 
 {% endblock %}

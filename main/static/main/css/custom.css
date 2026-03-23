@@ -783,3 +783,340 @@ code {
   }
 }
 
+/* ============================================
+   TERMINAL DARK THEME
+   ============================================ */
+
+body.terminal-theme {
+  background: #0a0e27;
+  background-image: 
+    linear-gradient(rgba(0, 255, 157, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 157, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: none;
+}
+
+body.terminal-theme .modern-nav {
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(0, 255, 157, 0.2);
+}
+
+body.terminal-theme .modern-nav .brand-logo {
+  background: linear-gradient(135deg, #00ff9d, #00d4ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-family: 'Courier New', monospace;
+  text-shadow: 0 0 20px rgba(0, 255, 157, 0.5);
+}
+
+body.terminal-theme .modern-nav ul li a {
+  color: #00ff9d;
+  font-family: 'Courier New', monospace;
+  border: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+
+body.terminal-theme .modern-nav ul li a:hover {
+  background: rgba(0, 255, 157, 0.1);
+  color: #00ff9d;
+  border: 1px solid rgba(0, 255, 157, 0.3);
+  box-shadow: 0 0 20px rgba(0, 255, 157, 0.3);
+}
+
+body.terminal-theme .modern-container {
+  background: transparent;
+}
+
+body.terminal-theme .modern-card {
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(0, 255, 157, 0.2);
+  box-shadow: 0 0 40px rgba(0, 255, 157, 0.1);
+}
+
+body.terminal-theme .modern-card:hover {
+  border-color: rgba(0, 255, 157, 0.4);
+  box-shadow: 0 0 60px rgba(0, 255, 157, 0.2);
+}
+
+body.terminal-theme .modern-card-title {
+  background: linear-gradient(135deg, #00ff9d, #00d4ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-family: 'Courier New', monospace;
+  text-shadow: 0 0 30px rgba(0, 255, 157, 0.3);
+}
+
+body.terminal-theme .modern-card-subtitle {
+  color: #8b9dc3;
+  font-family: 'Courier New', monospace;
+}
+
+body.terminal-theme .hero-section {
+  color: #00ff9d;
+}
+
+body.terminal-theme .hero-title {
+  color: #00ff9d;
+  text-shadow: 0 0 40px rgba(0, 255, 157, 0.6);
+  font-family: 'Courier New', monospace;
+}
+
+body.terminal-theme .hero-subtitle {
+  color: #8b9dc3;
+  font-family: 'Courier New', monospace;
+}
+
+body.terminal-theme .hero-tag {
+  background: rgba(0, 255, 157, 0.1);
+  border: 1px solid rgba(0, 255, 157, 0.3);
+  color: #00ff9d;
+  font-family: 'Courier New', monospace;
+}
+
+body.terminal-theme .hero-tag:hover {
+  background: rgba(0, 255, 157, 0.2);
+  border-color: rgba(0, 255, 157, 0.5);
+  box-shadow: 0 0 20px rgba(0, 255, 157, 0.4);
+}
+
+body.terminal-theme .glass {
+  background: rgba(0, 255, 157, 0.05);
+  border: 1px solid rgba(0, 255, 157, 0.2);
+}
+
+body.terminal-theme .modern-btn {
+  background: linear-gradient(135deg, rgba(0, 255, 157, 0.2), rgba(0, 212, 255, 0.2));
+  border: 2px solid #00ff9d;
+  color: #00ff9d;
+  box-shadow: 0 0 30px rgba(0, 255, 157, 0.3);
+  font-family: 'Courier New', monospace;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+body.terminal-theme .modern-btn:hover {
+  background: linear-gradient(135deg, rgba(0, 255, 157, 0.3), rgba(0, 212, 255, 0.3));
+  box-shadow: 0 0 50px rgba(0, 255, 157, 0.6);
+  border-color: #00d4ff;
+  transform: translateY(-3px);
+}
+
+body.terminal-theme .feature-card {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(0, 255, 157, 0.2);
+}
+
+body.terminal-theme .feature-card:hover {
+  border-color: rgba(0, 255, 157, 0.5);
+  box-shadow: 0 0 40px rgba(0, 255, 157, 0.3);
+}
+
+body.terminal-theme .feature-icon {
+  background: linear-gradient(135deg, rgba(0, 255, 157, 0.3), rgba(0, 212, 255, 0.3));
+  border: 2px solid #00ff9d;
+  box-shadow: 0 0 30px rgba(0, 255, 157, 0.4);
+}
+
+body.terminal-theme .feature-title {
+  color: #00ff9d;
+  font-family: 'Courier New', monospace;
+}
+
+body.terminal-theme .feature-description,
+body.terminal-theme p {
+  color: #8b9dc3;
+}
+
+body.terminal-theme code {
+  background: rgba(0, 255, 157, 0.1);
+  border: 1px solid rgba(0, 255, 157, 0.3);
+  color: #00ff9d;
+  font-family: 'Courier New', monospace;
+}
+
+body.terminal-theme .info-box {
+  background: rgba(0, 255, 157, 0.05);
+  border-left: 4px solid #00ff9d;
+  box-shadow: 0 0 20px rgba(0, 255, 157, 0.1);
+}
+
+body.terminal-theme .step-number {
+  background: linear-gradient(135deg, #00ff9d, #00d4ff);
+  box-shadow: 0 0 20px rgba(0, 255, 157, 0.5);
+}
+
+body.terminal-theme .step-item {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(0, 255, 157, 0.2);
+}
+
+body.terminal-theme strong {
+  color: #00ff9d;
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  z-index: 9999;
+}
+
+.theme-toggle:hover {
+  transform: translateY(-5px) scale(1.1);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
+body.terminal-theme .theme-toggle {
+  background: linear-gradient(135deg, #00ff9d, #00d4ff);
+  box-shadow: 0 0 30px rgba(0, 255, 157, 0.5);
+}
+
+body.terminal-theme .theme-toggle:hover {
+  box-shadow: 0 0 50px rgba(0, 255, 157, 0.8);
+}
+
+/* Typing Animation */
+.typing-text {
+  overflow: hidden;
+  border-right: 3px solid;
+  white-space: nowrap;
+  animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+  display: inline-block;
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: currentColor; }
+}
+
+body.terminal-theme .typing-text {
+  border-right-color: #00ff9d;
+}
+
+/* Neon Glow Animation */
+@keyframes neon-glow {
+  0%, 100% {
+    text-shadow: 
+      0 0 10px rgba(0, 255, 157, 0.8),
+      0 0 20px rgba(0, 255, 157, 0.6),
+      0 0 30px rgba(0, 255, 157, 0.4);
+  }
+  50% {
+    text-shadow: 
+      0 0 20px rgba(0, 255, 157, 1),
+      0 0 40px rgba(0, 255, 157, 0.8),
+      0 0 60px rgba(0, 255, 157, 0.6);
+  }
+}
+
+body.terminal-theme .hero-title {
+  animation: neon-glow 2s ease-in-out infinite;
+}
+
+/* Terminal Cursor */
+.terminal-cursor {
+  display: inline-block;
+  width: 10px;
+  height: 1.2em;
+  background: #00ff9d;
+  animation: cursor-blink 1s step-end infinite;
+  margin-left: 2px;
+  vertical-align: text-bottom;
+}
+
+@keyframes cursor-blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* Scanline Effect */
+body.terminal-theme::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    transparent 0%,
+    rgba(0, 255, 157, 0.02) 50%,
+    transparent 100%
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 1;
+  animation: scanline 8s linear infinite;
+}
+
+@keyframes scanline {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 100%; }
+}
+
+/* Terminal Window Style */
+body.terminal-theme .terminal-window {
+  position: relative;
+  padding-top: 40px;
+}
+
+body.terminal-theme .terminal-window::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 30px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 12px 12px 0 0;
+  border-bottom: 1px solid rgba(0, 255, 157, 0.2);
+}
+
+body.terminal-theme .terminal-window::after {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 12px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ff5f57;
+  box-shadow: 
+    20px 0 0 #ffbd2e,
+    40px 0 0 #28ca42;
+}
+
+/* Smooth Theme Transition */
+body {
+  transition: background 0.5s ease, background-image 0.5s ease;
+}
+
+.modern-card,
+.modern-nav,
+.modern-btn,
+.feature-card,
+.hero-title,
+.hero-subtitle {
+  transition: all 0.5s ease;
+}
+
