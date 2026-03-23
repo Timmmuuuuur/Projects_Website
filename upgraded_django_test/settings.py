@@ -26,7 +26,7 @@ SECRET_KEY = 'jz8z$a34q*g4)h^%f@_v61)o0h#tgaczn5asu17lbek-+=3)am'
 DEBUG = True
 
 # Bump this when you change CSS/JS so Safari/Firefox pick up new static files (cache bust).
-STATIC_ASSET_VERSION = os.environ.get("STATIC_ASSET_VERSION", "4")
+STATIC_ASSET_VERSION = os.environ.get("STATIC_ASSET_VERSION", "5")
 
 ALLOWED_HOSTS = ['www.dauletov.com', 'localhost', '127.0.0.1']
 
