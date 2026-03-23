@@ -1,0 +1,229 @@
+{% extends 'main/header.html' %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<div class="modern-card fade-in-up" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; position: relative; overflow: hidden;">
+  <!-- Animated Background Elements -->
+  <div style="position: absolute; width: 350px; height: 350px; background: rgba(255,255,255,0.08); border-radius: 50%; top: -150px; right: -100px; animation: float 7s ease-in-out infinite;"></div>
+  <div style="position: absolute; width: 250px; height: 250px; background: rgba(255,255,255,0.08); border-radius: 50%; bottom: -80px; left: -80px; animation: float 5s ease-in-out infinite reverse;"></div>
+  
+  <div class="modern-card-header" style="position: relative; z-index: 1;">
+    <h1 class="modern-card-title" style="color: white; -webkit-text-fill-color: white; font-size: 2.8rem; text-shadow: 0 2px 10px rgba(0,0,0,0.2);">
+      📈 Stock Analysis & Risk Metrics
+    </h1>
+    <p style="color: rgba(255,255,255,0.95); font-size: 1.25rem; line-height: 1.8; font-weight: 300;">
+      Comprehensive quantitative analysis platform for computing <strong style="font-weight: 600;">individual stock returns</strong>, 
+      visualizing <strong style="font-weight: 600;">correlation matrices</strong>, and performing advanced <strong style="font-weight: 600;">risk analysis</strong>. 
+      All data sourced from Yahoo Finance for 2023-2024.
+    </p>
+    <div style="margin-top: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+      <span class="glass" style="padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.9rem;">📊 Real Market Data</span>
+      <span class="glass" style="padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.9rem;">🔢 NumPy/Pandas</span>
+      <span class="glass" style="padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.9rem;">⚡ FastAPI Backend</span>
+      <span class="glass" style="padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.9rem;">🗄️ MySQL Storage</span>
+    </div>
+  </div>
+</div>
+
+<!-- Project Overview -->
+<div class="modern-card fade-in-up" style="animation-delay: 0.1s;">
+  <div class="modern-card-header">
+    <h2 class="modern-card-title">🎯 Project Overview</h2>
+    <p class="modern-card-subtitle" style="font-size: 1.1rem; line-height: 1.8;">
+      This quantitative analysis platform implements various algorithms for financial analysis and risk assessment. 
+      Built with Python and powered by real market data, it provides insights into stock performance and portfolio correlations.
+    </p>
+  </div>
+  
+  <!-- Key Features -->
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 2rem;">
+    <div style="padding: 1.5rem; background: linear-gradient(135deg, rgba(16, 185, 129, 0.05), rgba(5, 150, 105, 0.05)); border-radius: 12px; border-left: 4px solid #10b981; transition: all 0.3s ease;" onmouseover="this.style.transform='translateX(5px)'" onmouseout="this.style.transform=''">
+      <div style="font-size: 2rem; margin-bottom: 1rem;">📈</div>
+      <h3 style="color: #10b981; margin-bottom: 0.75rem; font-size: 1.1rem; font-weight: 600;">Returns Calculation</h3>
+      <p style="color: #4b5563; line-height: 1.6;">Compute and visualize individual stock returns over time with daily, weekly, and monthly aggregations</p>
+    </div>
+    
+    <div style="padding: 1.5rem; background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(79, 70, 229, 0.05)); border-radius: 12px; border-left: 4px solid #6366f1; transition: all 0.3s ease;" onmouseover="this.style.transform='translateX(5px)'" onmouseout="this.style.transform=''">
+      <div style="font-size: 2rem; margin-bottom: 1rem;">🔗</div>
+      <h3 style="color: #6366f1; margin-bottom: 0.75rem; font-size: 1.1rem; font-weight: 600;">Correlation Analysis</h3>
+      <p style="color: #4b5563; line-height: 1.6;">Calculate and visualize correlation matrices to understand relationships between different stocks</p>
+    </div>
+    
+    <div style="padding: 1.5rem; background: linear-gradient(135deg, rgba(245, 158, 11, 0.05), rgba(217, 119, 6, 0.05)); border-radius: 12px; border-left: 4px solid #f59e0b; transition: all 0.3s ease;" onmouseover="this.style.transform='translateX(5px)'" onmouseout="this.style.transform=''">
+      <div style="font-size: 2rem; margin-bottom: 1rem;">⚠️</div>
+      <h3 style="color: #f59e0b; margin-bottom: 0.75rem; font-size: 1.1rem; font-weight: 600;">Risk Analysis</h3>
+      <p style="color: #4b5563; line-height: 1.6;">Implement quantitative risk algorithms including volatility metrics and statistical measures</p>
+    </div>
+  </div>
+</div>
+
+<!-- Technical Implementation -->
+<div class="modern-card fade-in-up" style="animation-delay: 0.2s;">
+  <div class="modern-card-header">
+    <h2 class="modern-card-title">⚙️ Technical Implementation</h2>
+    <p class="modern-card-subtitle">Architecture and technology stack powering the analysis platform</p>
+  </div>
+  
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 1.5rem;">
+    <div style="padding: 2rem; background: white; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: all 0.3s ease; cursor: pointer; border-top: 4px solid #10b981;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 8px 16px rgba(0,0,0,0.12)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.08)'">
+      <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #10b981, #059669); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+        <span style="font-size: 1.5rem;">🐍</span>
+      </div>
+      <h4 style="color: #10b981; margin-bottom: 1rem; font-size: 1.2rem; font-weight: 600;">Backend</h4>
+      <ul style="color: #4b5563; line-height: 1.8; list-style: none; padding: 0;">
+        <li style="padding: 0.5rem 0; border-bottom: 1px solid #f3f4f6;">✓ FastAPI for API endpoints</li>
+        <li style="padding: 0.5rem 0; border-bottom: 1px solid #f3f4f6;">✓ NumPy for computations</li>
+        <li style="padding: 0.5rem 0; border-bottom: 1px solid #f3f4f6;">✓ Pandas for data manipulation</li>
+        <li style="padding: 0.5rem 0;">✓ Yahoo Finance API integration</li>
+      </ul>
+    </div>
+    
+    <div style="padding: 2rem; background: white; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: all 0.3s ease; cursor: pointer; border-top: 4px solid #6366f1;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 8px 16px rgba(0,0,0,0.12)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.08)'">
+      <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #6366f1, #4f46e5); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+        <span style="font-size: 1.5rem;">🗄️</span>
+      </div>
+      <h4 style="color: #6366f1; margin-bottom: 1rem; font-size: 1.2rem; font-weight: 600;">Data Storage</h4>
+      <ul style="color: #4b5563; line-height: 1.8; list-style: none; padding: 0;">
+        <li style="padding: 0.5rem 0; border-bottom: 1px solid #f3f4f6;">✓ MySQL for time-series data</li>
+        <li style="padding: 0.5rem 0; border-bottom: 1px solid #f3f4f6;">✓ Optimized table schemas</li>
+        <li style="padding: 0.5rem 0; border-bottom: 1px solid #f3f4f6;">✓ Indexed for fast queries</li>
+        <li style="padding: 0.5rem 0;">✓ 2023-2024 market data</li>
+      </ul>
+    </div>
+    
+    <div style="padding: 2rem; background: white; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: all 0.3s ease; cursor: pointer; border-top: 4px solid #f59e0b;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 8px 16px rgba(0,0,0,0.12)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.08)'">
+      <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #f59e0b, #d97706); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+        <span style="font-size: 1.5rem;">📊</span>
+      </div>
+      <h4 style="color: #f59e0b; margin-bottom: 1rem; font-size: 1.2rem; font-weight: 600;">Analysis Features</h4>
+      <ul style="color: #4b5563; line-height: 1.8; list-style: none; padding: 0;">
+        <li style="padding: 0.5rem 0; border-bottom: 1px solid #f3f4f6;">✓ Return calculations (log/simple)</li>
+        <li style="padding: 0.5rem 0; border-bottom: 1px solid #f3f4f6;">✓ Correlation matrices</li>
+        <li style="padding: 0.5rem 0; border-bottom: 1px solid #f3f4f6;">✓ Risk metrics computation</li>
+        <li style="padding: 0.5rem 0;">✓ Data visualization</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Quantitative Algorithms -->
+<div class="modern-card fade-in-up" style="animation-delay: 0.3s; background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(16, 185, 129, 0.08));">
+  <div class="modern-card-header">
+    <h2 class="modern-card-title">🧮 Quantitative Algorithms Implemented</h2>
+  </div>
+  
+  <div style="display: grid; gap: 1.5rem; margin-top: 1.5rem;">
+    <div style="padding: 1.5rem; background: white; border-radius: 10px; border-left: 5px solid #10b981;">
+      <h4 style="color: #10b981; margin-bottom: 0.75rem; font-size: 1.1rem;">📈 Returns Analysis</h4>
+      <p style="color: #4b5563; line-height: 1.7; margin-bottom: 0.75rem;">
+        Calculation of daily, weekly, and monthly returns using both arithmetic and logarithmic methods. 
+        Includes cumulative return tracking and compound annual growth rate (CAGR) computations.
+      </p>
+      <code style="display: block; background: #f9fafb; padding: 0.75rem; border-radius: 6px; font-size: 0.9rem; color: #059669;">
+        returns = (price_t / price_{t-1}) - 1 | log_returns = ln(price_t / price_{t-1})
+      </code>
+    </div>
+    
+    <div style="padding: 1.5rem; background: white; border-radius: 10px; border-left: 5px solid #6366f1;">
+      <h4 style="color: #6366f1; margin-bottom: 0.75rem; font-size: 1.1rem;">🔗 Correlation Matrices</h4>
+      <p style="color: #4b5563; line-height: 1.7; margin-bottom: 0.75rem;">
+        Pearson correlation coefficients computed between pairs of stocks to identify diversification opportunities 
+        and understand portfolio relationships. Visualized as heatmaps for easy interpretation.
+      </p>
+      <code style="display: block; background: #f9fafb; padding: 0.75rem; border-radius: 6px; font-size: 0.9rem; color: #4f46e5;">
+        ρ(X,Y) = Cov(X,Y) / (σ_X × σ_Y)
+      </code>
+    </div>
+    
+    <div style="padding: 1.5rem; background: white; border-radius: 10px; border-left: 5px solid #f59e0b;">
+      <h4 style="color: #f59e0b; margin-bottom: 0.75rem; font-size: 1.1rem;">⚠️ Risk Metrics</h4>
+      <p style="color: #4b5563; line-height: 1.7; margin-bottom: 0.75rem;">
+        Volatility calculations using standard deviation of returns, beta coefficients for market sensitivity, 
+        and Sharpe ratios for risk-adjusted performance measurement.
+      </p>
+      <code style="display: block; background: #f9fafb; padding: 0.75rem; border-radius: 6px; font-size: 0.9rem; color: #d97706;">
+        σ = sqrt(Σ(r_i - μ)² / n) | Sharpe = (R_p - R_f) / σ_p
+      </code>
+    </div>
+  </div>
+</div>
+
+<!-- Data Source Info -->
+<div class="modern-card fade-in-up" style="animation-delay: 0.4s;">
+  <div class="modern-card-header">
+    <h2 class="modern-card-title">📊 Data Source & Coverage</h2>
+  </div>
+  
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 1.5rem;">
+    <div style="text-align: center; padding: 1.5rem;">
+      <div style="font-size: 3rem; margin-bottom: 0.75rem;">📡</div>
+      <div style="font-size: 2rem; font-weight: 700; color: #10b981; margin-bottom: 0.5rem;">Yahoo Finance</div>
+      <div style="color: #6b7280;">Real-time market data API</div>
+    </div>
+    
+    <div style="text-align: center; padding: 1.5rem;">
+      <div style="font-size: 3rem; margin-bottom: 0.75rem;">📅</div>
+      <div style="font-size: 2rem; font-weight: 700; color: #6366f1; margin-bottom: 0.5rem;">2023-2024</div>
+      <div style="color: #6b7280;">Historical data coverage</div>
+    </div>
+    
+    <div style="text-align: center; padding: 1.5rem;">
+      <div style="font-size: 3rem; margin-bottom: 0.75rem;">🔄</div>
+      <div style="font-size: 2rem; font-weight: 700; color: #f59e0b; margin-bottom: 0.5rem;">Daily</div>
+      <div style="color: #6b7280;">Data update frequency</div>
+    </div>
+    
+    <div style="text-align: center; padding: 1.5rem;">
+      <div style="font-size: 3rem; margin-bottom: 0.75rem;">📈</div>
+      <div style="font-size: 2rem; font-weight: 700; color: #8b5cf6; margin-bottom: 0.5rem;">Multiple</div>
+      <div style="color: #6b7280;">Stocks analyzed</div>
+    </div>
+  </div>
+</div>
+
+<!-- Coming Soon / Future Enhancements -->
+<div class="modern-card text-center fade-in-up" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; position: relative; overflow: hidden; animation-delay: 0.5s;">
+  <div style="position: absolute; width: 300px; height: 300px; background: rgba(255,255,255,0.06); border-radius: 50%; top: -100px; right: -100px; animation: float 6s ease-in-out infinite;"></div>
+  
+  <div class="modern-card-header" style="position: relative; z-index: 1;">
+    <h2 style="color: white; -webkit-text-fill-color: white; font-size: 2rem; margin-bottom: 1rem;">🚀 Coming Soon</h2>
+    <p style="color: rgba(255,255,255,0.95); font-size: 1.1rem; line-height: 1.8; max-width: 700px; margin: 0 auto;">
+      This project is currently in development. Interactive features and live analysis tools will be available soon!
+    </p>
+  </div>
+  
+  <div style="margin-top: 2rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; max-width: 900px; margin-left: auto; margin-right: auto; position: relative; z-index: 1;">
+    <div class="glass" style="padding: 1.25rem; border-radius: 12px;">
+      <div style="font-size: 1.8rem; margin-bottom: 0.5rem;">📊</div>
+      <div style="font-weight: 600; margin-bottom: 0.25rem;">Interactive Charts</div>
+      <div style="font-size: 0.9rem; opacity: 0.9;">Real-time visualization</div>
+    </div>
+    
+    <div class="glass" style="padding: 1.25rem; border-radius: 12px;">
+      <div style="font-size: 1.8rem; margin-bottom: 0.5rem;">🎯</div>
+      <div style="font-weight: 600; margin-bottom: 0.25rem;">Portfolio Analysis</div>
+      <div style="font-size: 0.9rem; opacity: 0.9;">Multi-asset tracking</div>
+    </div>
+    
+    <div class="glass" style="padding: 1.25rem; border-radius: 12px;">
+      <div style="font-size: 1.8rem; margin-bottom: 0.5rem;">🤖</div>
+      <div style="font-weight: 600; margin-bottom: 0.25rem;">ML Predictions</div>
+      <div style="font-size: 0.9rem; opacity: 0.9;">Price forecasting</div>
+    </div>
+    
+    <div class="glass" style="padding: 1.25rem; border-radius: 12px;">
+      <div style="font-size: 1.8rem; margin-bottom: 0.5rem;">📱</div>
+      <div style="font-weight: 600; margin-bottom: 0.25rem;">API Access</div>
+      <div style="font-size: 0.9rem; opacity: 0.9;">REST endpoints</div>
+    </div>
+  </div>
+  
+  <div style="margin-top: 2.5rem; position: relative; z-index: 1;">
+    <a href="/" class="modern-btn" style="background: white; color: #667eea; box-shadow: 0 8px 16px rgba(0,0,0,0.2); font-size: 1.05rem;">
+      ← Back to Projects
+    </a>
+  </div>
+</div>
+
+{% endblock %}

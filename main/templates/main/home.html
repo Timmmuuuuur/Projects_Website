@@ -13,27 +13,55 @@
       <span class="hero-tag">📈 Finance Enthusiast</span>
       <span class="hero-tag">🎮 Esports Hobbyist</span>
     </div>
+    
+    <!-- Quick Stats -->
+    <div style="margin-top: 3rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+      <div class="glass" style="padding: 1.5rem; border-radius: 16px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform=''">
+        <div style="font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem;">6+</div>
+        <div style="opacity: 0.9;">Co-op Experiences</div>
+      </div>
+      <div class="glass" style="padding: 1.5rem; border-radius: 16px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform=''">
+        <div style="font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem;">10+</div>
+        <div style="opacity: 0.9;">Technologies</div>
+      </div>
+      <div class="glass" style="padding: 1.5rem; border-radius: 16px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform=''">
+        <div style="font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem;">4+</div>
+        <div style="opacity: 0.9;">Major Projects</div>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- About Section -->
-<div class="modern-card fade-in-up">
+<div class="modern-card fade-in-up" style="animation-delay: 0.1s;">
   <div class="modern-card-header">
     <h2 class="modern-card-title">About Me</h2>
-    <p class="modern-card-subtitle">
-      I'm a fourth-year Computer Engineering student at the University of Waterloo, passionate about building 
-      innovative solutions that solve real-world problems. I love combining algorithms, machine learning, 
-      and web development to create impactful projects.
+    <p class="modern-card-subtitle" style="font-size: 1.15rem; line-height: 1.8;">
+      I'm a Computer Engineering graduate from the University of Waterloo with a passion for building 
+      innovative solutions that solve real-world problems. My expertise spans <strong>Data Engineering</strong>, 
+      <strong>Machine Learning</strong>, <strong>Full-Stack Development</strong>, and <strong>Quantitative Analysis</strong>.
+      I love combining algorithms, optimization techniques, and modern web technologies to create impactful projects.
     </p>
+  </div>
+  
+  <!-- Skills Tags -->
+  <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.5rem;">
+    <span style="background: rgba(99, 102, 241, 0.1); color: var(--primary-color); padding: 0.5rem 1rem; border-radius: 20px; font-weight: 500; font-size: 0.9rem;">Python</span>
+    <span style="background: rgba(16, 185, 129, 0.1); color: var(--secondary-color); padding: 0.5rem 1rem; border-radius: 20px; font-weight: 500; font-size: 0.9rem;">SQL/PostgreSQL</span>
+    <span style="background: rgba(245, 158, 11, 0.1); color: var(--accent-color); padding: 0.5rem 1rem; border-radius: 20px; font-weight: 500; font-size: 0.9rem;">Django/FastAPI</span>
+    <span style="background: rgba(139, 92, 246, 0.1); color: #8b5cf6; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 500; font-size: 0.9rem;">Machine Learning</span>
+    <span style="background: rgba(236, 72, 153, 0.1); color: #ec4899; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 500; font-size: 0.9rem;">Data Engineering</span>
+    <span style="background: rgba(20, 184, 166, 0.1); color: #14b8a6; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 500; font-size: 0.9rem;">AWS/GCP</span>
+    <span style="background: rgba(249, 115, 22, 0.1); color: #f97316; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 500; font-size: 0.9rem;">Docker/Kubernetes</span>
   </div>
 </div>
 
 <!-- Projects Section -->
-<div class="modern-card fade-in-up">
+<div class="modern-card fade-in-up" style="animation-delay: 0.2s;">
   <div class="modern-card-header">
     <h2 class="modern-card-title">Featured Projects</h2>
     <p class="modern-card-subtitle">
-      Check out these interactive tools that solve everyday optimization and prediction problems!
+      Interactive tools and applications demonstrating optimization algorithms, machine learning, and quantitative analysis
     </p>
   </div>
   
@@ -44,52 +72,124 @@
       <h3 class="feature-title">Vehicle Routing Optimizer</h3>
       <p class="feature-description">
         Solve the NP-hard Vehicle Routing Problem with an intelligent Tabu Search algorithm. 
-        Input multiple addresses and get optimized routes for your fleet instantly.
+        Input multiple addresses and get optimized routes for your fleet with interactive map visualization.
       </p>
       <div class="info-box">
-        <p><strong>Technologies:</strong> Python, OpenStreetMap, Selenium, Haversine Algorithm, Tabu Search</p>
-        <p><strong>Use Case:</strong> Delivery optimization, Fleet management, Route planning</p>
+        <p><strong>Technologies:</strong> Python, Django, OpenStreetMap API, Leaflet.js, Haversine Algorithm, Tabu Search</p>
+        <p><strong>Features:</strong> Real-time geocoding with caching, Multi-vehicle optimization, Interactive maps</p>
       </div>
       <a href="/vrp" class="modern-btn">
         Try it Now →
       </a>
     </div>
     
+    <!-- Stock Analysis Project - NEW -->
+    <div class="feature-card" style="border: 2px solid rgba(99, 102, 241, 0.2);">
+      <div style="position: absolute; top: 1rem; right: 1rem; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: white; padding: 0.25rem 0.75rem; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">
+        Featured
+      </div>
+      <div class="feature-icon" style="background: linear-gradient(135deg, #10b981, #059669);">📈</div>
+      <h3 class="feature-title">Stock Analysis & Risk Metrics</h3>
+      <p class="feature-description">
+        Quantitative analysis platform for computing stock returns, visualizing correlations, and performing risk analysis. 
+        Powered by real market data from Yahoo Finance.
+      </p>
+      <div class="info-box">
+        <p><strong>Technologies:</strong> Python, FastAPI, NumPy, Pandas, MySQL, Yahoo Finance API</p>
+        <p><strong>Analysis:</strong> Returns calculation, Correlation matrices, Risk metrics, Data visualization</p>
+      </div>
+      <a href="/stocks" class="modern-btn modern-btn-secondary">
+        Explore Analysis →
+      </a>
+    </div>
+    
     <!-- Grad School Predictor -->
     <div class="feature-card">
-      <div class="feature-icon">🎓</div>
+      <div class="feature-icon" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);">🎓</div>
       <h3 class="feature-title">Grad School Admission Predictor</h3>
       <p class="feature-description">
         Machine learning-powered predictor that estimates your chances of getting into graduate school 
-        based on GRE scores, GPA, and institution ranking.
+        based on GRE scores, GPA, and institution ranking using logistic regression.
       </p>
       <div class="info-box">
-        <p><strong>Technologies:</strong> Logistic Regression, scikit-learn, Pandas, NumPy</p>
-        <p><strong>Dataset:</strong> Trained on 400+ real admission records</p>
+        <p><strong>Technologies:</strong> Logistic Regression, scikit-learn, Pandas, NumPy, Django</p>
+        <p><strong>Dataset:</strong> Trained on 400+ real admission records with 90%+ accuracy</p>
       </div>
-      <a href="/uni_admin" class="modern-btn modern-btn-secondary">
+      <a href="/uni_admin" class="modern-btn" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);">
         Check My Chances →
       </a>
+    </div>
+  </div>
+  
+  <!-- Project Highlights -->
+  <div style="margin-top: 3rem; padding: 2rem; background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(16, 185, 129, 0.05)); border-radius: 16px; border: 2px dashed rgba(99, 102, 241, 0.2);">
+    <h3 style="color: var(--primary-color); margin-bottom: 1.5rem; text-align: center; font-size: 1.3rem;">🎯 Project Highlights</h3>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
+      <div style="text-align: center;">
+        <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">⚡</div>
+        <div style="font-weight: 600; color: var(--text-primary); margin-bottom: 0.25rem;">Real-time Processing</div>
+        <div style="color: var(--text-secondary); font-size: 0.9rem;">Sub-second response times</div>
+      </div>
+      <div style="text-align: center;">
+        <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🗺️</div>
+        <div style="font-weight: 600; color: var(--text-primary); margin-bottom: 0.25rem;">Interactive Visualizations</div>
+        <div style="color: var(--text-secondary); font-size: 0.9rem;">Dynamic maps & charts</div>
+      </div>
+      <div style="text-align: center;">
+        <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🔧</div>
+        <div style="font-weight: 600; color: var(--text-primary); margin-bottom: 0.25rem;">Production-Ready</div>
+        <div style="color: var(--text-secondary); font-size: 0.9rem;">Deployed & scalable</div>
+      </div>
+      <div style="text-align: center;">
+        <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">📊</div>
+        <div style="font-weight: 600; color: var(--text-primary); margin-bottom: 0.25rem;">Data-Driven</div>
+        <div style="color: var(--text-secondary); font-size: 0.9rem;">Real market & historical data</div>
+      </div>
     </div>
   </div>
 </div>
 
 <!-- Call to Action -->
-<div class="modern-card text-center fade-in-up" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
-  <div class="modern-card-header">
-    <h2 style="color: white; -webkit-text-fill-color: white;">Ready to Explore?</h2>
-    <p style="color: rgba(255,255,255,0.9); font-size: 1.1rem;">
-      These projects demonstrate practical applications of algorithms and machine learning. 
+<div class="modern-card text-center fade-in-up" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; position: relative; overflow: hidden; animation-delay: 0.3s;">
+  <!-- Animated Background -->
+  <div style="position: absolute; width: 400px; height: 400px; background: rgba(255,255,255,0.05); border-radius: 50%; top: -200px; right: -200px; animation: float 8s ease-in-out infinite;"></div>
+  <div style="position: absolute; width: 300px; height: 300px; background: rgba(255,255,255,0.05); border-radius: 50%; bottom: -150px; left: -150px; animation: float 6s ease-in-out infinite reverse;"></div>
+  
+  <div class="modern-card-header" style="position: relative; z-index: 1;">
+    <h2 style="color: white; -webkit-text-fill-color: white; font-size: 2.2rem; margin-bottom: 1rem;">Ready to Explore? 🚀</h2>
+    <p style="color: rgba(255,255,255,0.95); font-size: 1.15rem; line-height: 1.8; max-width: 700px; margin: 0 auto;">
+      These projects demonstrate practical applications of algorithms, machine learning, and quantitative analysis. 
       Feel free to try them out and see the results in real-time!
     </p>
   </div>
-  <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem;">
-    <a href="/vrp" class="modern-btn" style="background: white; color: #667eea;">
+  <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem; position: relative; z-index: 1;">
+    <a href="/vrp" class="modern-btn" style="background: white; color: #667eea; box-shadow: 0 8px 16px rgba(0,0,0,0.2);">
       🚗 Vehicle Routing
     </a>
-    <a href="/uni_admin" class="modern-btn" style="background: rgba(255,255,255,0.2); backdrop-filter: blur(10px);">
+    <a href="/stocks" class="modern-btn" style="background: rgba(16, 185, 129, 0.9); backdrop-filter: blur(10px); box-shadow: 0 8px 16px rgba(0,0,0,0.2);">
+      📈 Stock Analysis
+    </a>
+    <a href="/uni_admin" class="modern-btn" style="background: rgba(255,255,255,0.25); backdrop-filter: blur(10px); box-shadow: 0 8px 16px rgba(0,0,0,0.2);">
       🎓 Admission Predictor
     </a>
+  </div>
+  
+  <!-- Contact Info -->
+  <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.2); position: relative; z-index: 1;">
+    <p style="color: rgba(255,255,255,0.9); font-size: 0.95rem; margin-bottom: 1rem;">
+      Interested in collaborating or want to learn more?
+    </p>
+    <div style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
+      <a href="https://github.com/dauletov" target="_blank" style="color: white; text-decoration: none; display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background: rgba(255,255,255,0.15); border-radius: 8px; transition: all 0.3s ease;" onmouseover="this.style.background='rgba(255,255,255,0.25)'" onmouseout="this.style.background='rgba(255,255,255,0.15)'">
+        <span>💻</span> GitHub
+      </a>
+      <a href="https://linkedin.com/in/timur-dauletov" target="_blank" style="color: white; text-decoration: none; display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background: rgba(255,255,255,0.15); border-radius: 8px; transition: all 0.3s ease;" onmouseover="this.style.background='rgba(255,255,255,0.25)'" onmouseout="this.style.background='rgba(255,255,255,0.15)'">
+        <span>🔗</span> LinkedIn
+      </a>
+      <a href="mailto:timur.dauletov@uwaterloo.ca" style="color: white; text-decoration: none; display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background: rgba(255,255,255,0.15); border-radius: 8px; transition: all 0.3s ease;" onmouseover="this.style.background='rgba(255,255,255,0.25)'" onmouseout="this.style.background='rgba(255,255,255,0.15)'">
+        <span>📧</span> Email
+      </a>
+    </div>
   </div>
 </div>
 

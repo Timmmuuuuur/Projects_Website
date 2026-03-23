@@ -10,5 +10,6 @@ urlpatterns = [
     path('logout/', views.logout_request, name='logout'),
     path('login/', views.login_request, name='login'),
     path('vrp/', views.print_request, name='vrp'),
+    path('stocks/', views.stock_analysis_request, name='stocks'),
     path('uni_admin/', views.admission_prob_request, name='uni_admin'),
 ]

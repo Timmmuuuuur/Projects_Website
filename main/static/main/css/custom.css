@@ -499,3 +499,287 @@ body {
   100% { transform: rotate(360deg); }
 }
 
+/* Advanced Animations & Micro-interactions */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(99, 102, 241, 0.3); }
+  50% { box-shadow: 0 0 40px rgba(99, 102, 241, 0.6); }
+}
+
+@keyframes slide-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Gradient Background Enhancement */
+body {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  background-size: 200% 200%;
+  animation: gradient-shift 15s ease infinite;
+}
+
+/* Enhanced Card Hover Effects */
+.modern-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.modern-card::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.modern-card:hover::after {
+  opacity: 1;
+}
+
+/* Enhanced Feature Cards */
+.feature-card {
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.feature-card:hover .feature-icon {
+  animation: float 2s ease-in-out infinite;
+}
+
+.feature-icon {
+  position: relative;
+  box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
+  transition: all 0.3s ease;
+}
+
+.feature-card:hover .feature-icon {
+  box-shadow: 0 15px 35px rgba(99, 102, 241, 0.5);
+}
+
+/* Button Ripple Effect */
+.modern-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.modern-btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.modern-btn:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* Input Focus Glow */
+.modern-form input:focus,
+.modern-form textarea:focus {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Step Number Pulse on Hover */
+.step-item:hover .step-number {
+  animation: pulse-glow 1.5s ease-in-out infinite;
+  transform: scale(1.1);
+}
+
+/* Smooth Page Transitions */
+.fade-in-up {
+  animation: fadeInUp 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Staggered Animation Classes */
+.fade-in-left {
+  animation: slide-in-left 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.fade-in-right {
+  animation: slide-in-right 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Enhanced Navigation with Glass Effect */
+.modern-nav {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  border-radius: 10px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, var(--primary-dark), var(--secondary-dark));
+}
+
+/* Code Tag Styling */
+code {
+  background: rgba(99, 102, 241, 0.1);
+  padding: 0.2rem 0.5rem;
+  border-radius: 5px;
+  font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+  color: var(--primary-dark);
+  font-size: 0.9em;
+  border: 1px solid rgba(99, 102, 241, 0.2);
+}
+
+/* Loading State for Map */
+.loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  z-index: 100;
+}
+
+.loading-overlay .spinner {
+  border-width: 6px;
+  width: 60px;
+  height: 60px;
+}
+
+/* Enhanced Route Legend */
+#route-legend > div {
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+#route-legend > div:hover {
+  transform: translateX(5px) scale(1.02);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Success Message Animation */
+@keyframes success-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.toast {
+  animation: success-pulse 0.5s ease;
+}
+
+/* Glassmorphism Utility Class */
+.glass {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Gradient Text Utility */
+.gradient-text {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Performance Optimizations */
+.modern-card,
+.feature-card,
+.modern-btn {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Mobile Enhancements */
+@media (max-width: 768px) {
+  .modern-nav {
+    backdrop-filter: blur(15px);
+  }
+  
+  .feature-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .hero-title {
+    animation: fadeInUp 0.6s ease;
+  }
+  
+  .hero-tags {
+    gap: 0.5rem;
+  }
+  
+  .hero-tag {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Print Styles */
+@media print {
+  body {
+    background: white;
+  }
+  
+  .modern-nav,
+  .modern-btn,
+  #route-legend {
+    display: none;
+  }
+  
+  .modern-card {
+    box-shadow: none;
+    border: 1px solid #ddd;
+  }
+}
+
