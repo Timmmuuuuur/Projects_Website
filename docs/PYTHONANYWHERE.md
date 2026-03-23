@@ -43,13 +43,25 @@ If you see `ModuleNotFoundError: No module named 'tinymce'`, you are not using t
 
 ## 3. Static files (CSS/JS)
 
+### Option A — WhiteNoise (recommended in this repo)
+
+With **`DJANGO_DEBUG=false`**, Django serves files from `STATIC_ROOT` via **WhiteNoise** (`whitenoise` in `requirements.txt`).
+
+1. Install deps + `collectstatic` (with venv).
+2. **Remove** the **Web → Static files** row for **`/static/`** so nginx does not serve an old folder; `/static/` must hit your WSGI app.
+3. Reload the web app.
+
+See **`docs/IPAD_OLD_DESIGN_CHECKLIST.md`** for why this fixes “old design on iPad.”
+
+### Option B — PythonAnywhere “Static files” map only
+
 Under **Web** → **Static files**:
 
 | URL   | Directory (example) |
 |-------|---------------------|
 | `/static/` | `/home/dauletov/REALWEBSITE/Projects_Website/staticfiles/` |
 
-Must match `STATIC_ROOT` in `settings.py` (project’s `staticfiles` folder **after** `collectstatic`).
+Must match `STATIC_ROOT` (the `staticfiles` folder **after** `collectstatic`). Do **not** point at `main/static/` (source).
 
 ## 4. Production debug
 

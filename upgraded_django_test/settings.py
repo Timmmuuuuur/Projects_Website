@@ -27,7 +27,7 @@ SECRET_KEY = 'jz8z$a34q*g4)h^%f@_v61)o0h#tgaczn5asu17lbek-+=3)am'
 DEBUG = os.environ.get("DJANGO_DEBUG", "True").lower() in ("1", "true", "yes")
 
 # Bump this when you change CSS/JS so Safari/Firefox pick up new static files (cache bust).
-STATIC_ASSET_VERSION = os.environ.get("STATIC_ASSET_VERSION", "6")
+STATIC_ASSET_VERSION = os.environ.get("STATIC_ASSET_VERSION", "7")
 
 ALLOWED_HOSTS = [
     "www.dauletov.com",
@@ -60,6 +60,10 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+# Production only: avoids nginx serving a stale /static/ folder on PythonAnywhere; keeps local runserver unchanged.
+if not DEBUG:
+    MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
 
 ROOT_URLCONF = 'upgraded_django_test.urls'
 
@@ -163,6 +167,10 @@ STATIC_URL = '/static/'
 
 # Production static files collection directory
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# Production only: gzip precompressed files at collectstatic time (skip when DEBUG=True for easy local runserver).
+if not DEBUG:
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
 # Default primary key field type (required for Django 3.2+)
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
