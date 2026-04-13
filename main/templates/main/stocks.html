@@ -3,12 +3,13 @@
 {% block content %}
 
 <!-- Hero Section -->
-<div class="modern-card fade-in-up" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; position: relative; overflow: hidden;">
+<div class="modern-card fade-in-up hero-banner kaveen-frame" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; position: relative; overflow: hidden;">
   <!-- Animated Background Elements -->
-  <div style="position: absolute; width: 350px; height: 350px; background: rgba(255,255,255,0.08); border-radius: 50%; top: -150px; right: -100px; animation: float 7s ease-in-out infinite;"></div>
-  <div style="position: absolute; width: 250px; height: 250px; background: rgba(255,255,255,0.08); border-radius: 50%; bottom: -80px; left: -80px; animation: float 5s ease-in-out infinite reverse;"></div>
+  <div class="page-hero-bg-orb" style="position: absolute; width: 350px; height: 350px; background: rgba(255,255,255,0.08); border-radius: 50%; top: -150px; right: -100px; animation: float 7s ease-in-out infinite;"></div>
+  <div class="page-hero-bg-orb" style="position: absolute; width: 250px; height: 250px; background: rgba(255,255,255,0.08); border-radius: 50%; bottom: -80px; left: -80px; animation: float 5s ease-in-out infinite reverse;"></div>
   
   <div class="modern-card-header" style="position: relative; z-index: 1;">
+    <p class="dev-prompt-line dev-font" style="text-align: center; margin-bottom: 0.75rem;"><span class="dev-user">timur@portfolio</span>:<span class="dev-cmd">~/quant</span>$ <span class="dev-cmd">python risk_metrics.py</span></p>
     <h1 class="modern-card-title" style="color: white; -webkit-text-fill-color: white; font-size: 2.8rem; text-shadow: 0 2px 10px rgba(0,0,0,0.2);">
       📈 Stock Analysis & Risk Metrics
     </h1>
@@ -38,19 +39,19 @@
   
   <!-- Key Features -->
   <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 2rem;">
-    <div style="padding: 1.5rem; background: linear-gradient(135deg, rgba(16, 185, 129, 0.05), rgba(5, 150, 105, 0.05)); border-radius: 12px; border-left: 4px solid #10b981; transition: all 0.3s ease;" onmouseover="this.style.transform='translateX(5px)'" onmouseout="this.style.transform=''">
+    <div class="surface-tint" style="padding: 1.5rem; background: linear-gradient(135deg, rgba(16, 185, 129, 0.05), rgba(5, 150, 105, 0.05)); border-radius: 12px; border-left: 4px solid #10b981; transition: all 0.3s ease;" onmouseover="this.style.transform='translateX(5px)'" onmouseout="this.style.transform=''">
       <div style="font-size: 2rem; margin-bottom: 1rem;">📈</div>
       <h3 style="color: #10b981; margin-bottom: 0.75rem; font-size: 1.1rem; font-weight: 600;">Returns Calculation</h3>
       <p style="color: #4b5563; line-height: 1.6;">Compute and visualize individual stock returns over time with daily, weekly, and monthly aggregations</p>
     </div>
     
-    <div style="padding: 1.5rem; background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(79, 70, 229, 0.05)); border-radius: 12px; border-left: 4px solid #6366f1; transition: all 0.3s ease;" onmouseover="this.style.transform='translateX(5px)'" onmouseout="this.style.transform=''">
+    <div class="surface-tint" style="padding: 1.5rem; background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(79, 70, 229, 0.05)); border-radius: 12px; border-left: 4px solid #6366f1; transition: all 0.3s ease;" onmouseover="this.style.transform='translateX(5px)'" onmouseout="this.style.transform=''">
       <div style="font-size: 2rem; margin-bottom: 1rem;">🔗</div>
       <h3 style="color: #6366f1; margin-bottom: 0.75rem; font-size: 1.1rem; font-weight: 600;">Correlation Analysis</h3>
       <p style="color: #4b5563; line-height: 1.6;">Calculate and visualize correlation matrices to understand relationships between different stocks</p>
     </div>
     
-    <div style="padding: 1.5rem; background: linear-gradient(135deg, rgba(245, 158, 11, 0.05), rgba(217, 119, 6, 0.05)); border-radius: 12px; border-left: 4px solid #f59e0b; transition: all 0.3s ease;" onmouseover="this.style.transform='translateX(5px)'" onmouseout="this.style.transform=''">
+    <div class="surface-tint" style="padding: 1.5rem; background: linear-gradient(135deg, rgba(245, 158, 11, 0.05), rgba(217, 119, 6, 0.05)); border-radius: 12px; border-left: 4px solid #f59e0b; transition: all 0.3s ease;" onmouseover="this.style.transform='translateX(5px)'" onmouseout="this.style.transform=''">
       <div style="font-size: 2rem; margin-bottom: 1rem;">⚠️</div>
       <h3 style="color: #f59e0b; margin-bottom: 0.75rem; font-size: 1.1rem; font-weight: 600;">Risk Analysis</h3>
       <p style="color: #4b5563; line-height: 1.6;">Implement quantitative risk algorithms including volatility metrics and statistical measures</p>
@@ -66,7 +67,7 @@
   </div>
   
   <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 1.5rem;">
-    <div style="padding: 2rem; background: white; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: all 0.3s ease; cursor: pointer; border-top: 4px solid #10b981;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 8px 16px rgba(0,0,0,0.12)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.08)'">
+    <div class="surface-light" style="padding: 2rem; background: white; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: all 0.3s ease; cursor: pointer; border-top: 4px solid #10b981;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 8px 16px rgba(0,0,0,0.12)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.08)'">
       <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #10b981, #059669); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
         <span style="font-size: 1.5rem;">🐍</span>
       </div>
@@ -79,7 +80,7 @@
       </ul>
     </div>
     
-    <div style="padding: 2rem; background: white; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: all 0.3s ease; cursor: pointer; border-top: 4px solid #6366f1;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 8px 16px rgba(0,0,0,0.12)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.08)'">
+    <div class="surface-light" style="padding: 2rem; background: white; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: all 0.3s ease; cursor: pointer; border-top: 4px solid #6366f1;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 8px 16px rgba(0,0,0,0.12)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.08)'">
       <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #6366f1, #4f46e5); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
         <span style="font-size: 1.5rem;">🗄️</span>
       </div>
@@ -92,7 +93,7 @@
       </ul>
     </div>
     
-    <div style="padding: 2rem; background: white; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: all 0.3s ease; cursor: pointer; border-top: 4px solid #f59e0b;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 8px 16px rgba(0,0,0,0.12)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.08)'">
+    <div class="surface-light" style="padding: 2rem; background: white; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: all 0.3s ease; cursor: pointer; border-top: 4px solid #f59e0b;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 8px 16px rgba(0,0,0,0.12)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.08)'">
       <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #f59e0b, #d97706); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
         <span style="font-size: 1.5rem;">📊</span>
       </div>
@@ -108,13 +109,13 @@
 </div>
 
 <!-- Quantitative Algorithms -->
-<div class="modern-card fade-in-up" style="animation-delay: 0.3s; background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(16, 185, 129, 0.08));">
+<div class="modern-card fade-in-up algo-section-card" style="animation-delay: 0.3s; background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(16, 185, 129, 0.08));">
   <div class="modern-card-header">
     <h2 class="modern-card-title">🧮 Quantitative Algorithms Implemented</h2>
   </div>
   
   <div style="display: grid; gap: 1.5rem; margin-top: 1.5rem;">
-    <div style="padding: 1.5rem; background: white; border-radius: 10px; border-left: 5px solid #10b981;">
+    <div class="surface-light" style="padding: 1.5rem; background: white; border-radius: 10px; border-left: 5px solid #10b981;">
       <h4 style="color: #10b981; margin-bottom: 0.75rem; font-size: 1.1rem;">📈 Returns Analysis</h4>
       <p style="color: #4b5563; line-height: 1.7; margin-bottom: 0.75rem;">
         Calculation of daily, weekly, and monthly returns using both arithmetic and logarithmic methods. 
@@ -125,7 +126,7 @@
       </code>
     </div>
     
-    <div style="padding: 1.5rem; background: white; border-radius: 10px; border-left: 5px solid #6366f1;">
+    <div class="surface-light" style="padding: 1.5rem; background: white; border-radius: 10px; border-left: 5px solid #6366f1;">
       <h4 style="color: #6366f1; margin-bottom: 0.75rem; font-size: 1.1rem;">🔗 Correlation Matrices</h4>
       <p style="color: #4b5563; line-height: 1.7; margin-bottom: 0.75rem;">
         Pearson correlation coefficients computed between pairs of stocks to identify diversification opportunities 
@@ -136,7 +137,7 @@
       </code>
     </div>
     
-    <div style="padding: 1.5rem; background: white; border-radius: 10px; border-left: 5px solid #f59e0b;">
+    <div class="surface-light" style="padding: 1.5rem; background: white; border-radius: 10px; border-left: 5px solid #f59e0b;">
       <h4 style="color: #f59e0b; margin-bottom: 0.75rem; font-size: 1.1rem;">⚠️ Risk Metrics</h4>
       <p style="color: #4b5563; line-height: 1.7; margin-bottom: 0.75rem;">
         Volatility calculations using standard deviation of returns, beta coefficients for market sensitivity, 
@@ -156,35 +157,35 @@
   </div>
   
   <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 1.5rem;">
-    <div style="text-align: center; padding: 1.5rem;">
+    <div class="data-coverage-stat" style="text-align: center; padding: 1.5rem;">
       <div style="font-size: 3rem; margin-bottom: 0.75rem;">📡</div>
       <div style="font-size: 2rem; font-weight: 700; color: #10b981; margin-bottom: 0.5rem;">Yahoo Finance</div>
-      <div style="color: #6b7280;">Real-time market data API</div>
+      <div class="stat-caption" style="color: #6b7280;">Real-time market data API</div>
     </div>
     
-    <div style="text-align: center; padding: 1.5rem;">
+    <div class="data-coverage-stat" style="text-align: center; padding: 1.5rem;">
       <div style="font-size: 3rem; margin-bottom: 0.75rem;">📅</div>
       <div style="font-size: 2rem; font-weight: 700; color: #6366f1; margin-bottom: 0.5rem;">2023-2024</div>
-      <div style="color: #6b7280;">Historical data coverage</div>
+      <div class="stat-caption" style="color: #6b7280;">Historical data coverage</div>
     </div>
     
-    <div style="text-align: center; padding: 1.5rem;">
+    <div class="data-coverage-stat" style="text-align: center; padding: 1.5rem;">
       <div style="font-size: 3rem; margin-bottom: 0.75rem;">🔄</div>
       <div style="font-size: 2rem; font-weight: 700; color: #f59e0b; margin-bottom: 0.5rem;">Daily</div>
-      <div style="color: #6b7280;">Data update frequency</div>
+      <div class="stat-caption" style="color: #6b7280;">Data update frequency</div>
     </div>
     
-    <div style="text-align: center; padding: 1.5rem;">
+    <div class="data-coverage-stat" style="text-align: center; padding: 1.5rem;">
       <div style="font-size: 3rem; margin-bottom: 0.75rem;">📈</div>
       <div style="font-size: 2rem; font-weight: 700; color: #8b5cf6; margin-bottom: 0.5rem;">Multiple</div>
-      <div style="color: #6b7280;">Stocks analyzed</div>
+      <div class="stat-caption" style="color: #6b7280;">Stocks analyzed</div>
     </div>
   </div>
 </div>
 
 <!-- Coming Soon / Future Enhancements -->
-<div class="modern-card text-center fade-in-up" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; position: relative; overflow: hidden; animation-delay: 0.5s;">
-  <div style="position: absolute; width: 300px; height: 300px; background: rgba(255,255,255,0.06); border-radius: 50%; top: -100px; right: -100px; animation: float 6s ease-in-out infinite;"></div>
+<div class="modern-card text-center fade-in-up page-cta-band hero-banner kaveen-frame" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; position: relative; overflow: hidden; animation-delay: 0.5s;">
+  <div class="page-hero-bg-orb" style="position: absolute; width: 300px; height: 300px; background: rgba(255,255,255,0.06); border-radius: 50%; top: -100px; right: -100px; animation: float 6s ease-in-out infinite;"></div>
   
   <div class="modern-card-header" style="position: relative; z-index: 1;">
     <h2 style="color: white; -webkit-text-fill-color: white; font-size: 2rem; margin-bottom: 1rem;">🚀 Coming Soon</h2>
@@ -220,7 +221,7 @@
   </div>
   
   <div style="margin-top: 2.5rem; position: relative; z-index: 1;">
-    <a href="/" class="modern-btn" style="background: white; color: #667eea; box-shadow: 0 8px 16px rgba(0,0,0,0.2); font-size: 1.05rem;">
+    <a href="/" class="modern-btn kaveen-glow-btn" style="font-size: 1.05rem;">
       ← Back to Projects
     </a>
   </div>

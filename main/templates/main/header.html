@@ -10,8 +10,8 @@
     <meta http-equiv="Pragma" content="no-cache">
     {% endif %}
     
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Google Fonts: Inter + JetBrains Mono (Kaveen-style dev UI) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Prism CSS -->
     <link href="{% static "tinymce/css/prism.css" %}" rel="stylesheet">
@@ -38,13 +38,13 @@
         height: 100%;
         pointer-events: none;
         z-index: 0;
-        /* Subtle on default theme so Safari/Firefox show the same “alive” feel as Cursor */
-        opacity: 0.14;
+        /* Default site theme is terminal (dark); lighter when user toggles to gradient */
+        opacity: 0.35;
         transition: opacity 0.5s ease;
       }
       
-      body.terminal-theme #particle-canvas {
-        opacity: 0.35;
+      body:not(.terminal-theme) #particle-canvas {
+        opacity: 0.14;
       }
       
       .modern-container {
@@ -59,7 +59,7 @@
     </style>
 </head>
 
-<body>
+<body class="terminal-theme">
   <!-- Particle Background -->
   <canvas id="particle-canvas"></canvas>
   
@@ -85,33 +85,43 @@
   
   <!-- Theme Toggle Button -->
   <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-    <span id="themeIcon">🌙</span>
+    <span id="themeIcon">☀️</span>
   </button>
   
-  <!-- Theme Toggle Script -->
+  <!-- Theme: default dark (terminal). Only use gradient if user explicitly chose it before. -->
   <script>
-    const themeToggle = document.getElementById('themeToggle');
-    const themeIcon = document.getElementById('themeIcon');
-    const body = document.body;
-    
-    // Check for saved theme preference
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'terminal') {
-      body.classList.add('terminal-theme');
-      themeIcon.textContent = '☀️';
-    }
-    
-    themeToggle.addEventListener('click', () => {
-      body.classList.toggle('terminal-theme');
-      
-      if (body.classList.contains('terminal-theme')) {
-        themeIcon.textContent = '☀️';
-        localStorage.setItem('theme', 'terminal');
-      } else {
-        themeIcon.textContent = '🌙';
-        localStorage.setItem('theme', 'gradient');
+    (function () {
+      const themeToggle = document.getElementById('themeToggle');
+      const themeIcon = document.getElementById('themeIcon');
+      const body = document.body;
+      if (!themeToggle || !themeIcon) return;
+
+      function storageGet(key) {
+        try { return localStorage.getItem(key); } catch (e) { return null; }
       }
-    });
+      function storageSet(key, val) {
+        try { localStorage.setItem(key, val); } catch (e) { /* ignore */ }
+      }
+
+      if (storageGet('theme') === 'gradient') {
+        body.classList.remove('terminal-theme');
+        themeIcon.textContent = '🌙';
+      } else {
+        body.classList.add('terminal-theme');
+        themeIcon.textContent = '☀️';
+      }
+
+      themeToggle.addEventListener('click', function () {
+        body.classList.toggle('terminal-theme');
+        if (body.classList.contains('terminal-theme')) {
+          themeIcon.textContent = '☀️';
+          storageSet('theme', 'terminal');
+        } else {
+          themeIcon.textContent = '🌙';
+          storageSet('theme', 'gradient');
+        }
+      });
+    })();
   </script>
   
   <!-- Particle Animation Script -->

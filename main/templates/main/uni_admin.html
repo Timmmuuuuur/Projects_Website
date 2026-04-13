@@ -2,8 +2,11 @@
 {% block content %}
 
 <!-- Hero Section -->
-<div class="modern-card fade-in-up" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white;">
-  <div class="modern-card-header">
+<div class="modern-card fade-in-up hero-banner kaveen-frame" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; position: relative; overflow: hidden;">
+  <div class="page-hero-bg-orb" style="position: absolute; width: 280px; height: 280px; background: rgba(255,255,255,0.08); border-radius: 50%; top: -120px; right: -80px; animation: float 6s ease-in-out infinite;"></div>
+  <div class="page-hero-bg-orb" style="position: absolute; width: 200px; height: 200px; background: rgba(255,255,255,0.06); border-radius: 50%; bottom: -60px; left: -40px; animation: float 5s ease-in-out infinite reverse;"></div>
+  <div class="modern-card-header" style="position: relative; z-index: 1;">
+    <p class="dev-prompt-line dev-font" style="text-align: center; margin-bottom: 0.75rem;"><span class="dev-user">timur@portfolio</span>:<span class="dev-cmd">~/ml</span>$ <span class="dev-cmd">./predict_admission</span></p>
     <h1 class="modern-card-title" style="color: white; -webkit-text-fill-color: white; font-size: 2.5rem;">
       🎓 Graduate School Admission Predictor
     </h1>
@@ -119,7 +122,7 @@
 </div>
 
 <!-- Model Info Section -->
-<div class="modern-card fade-in-up" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.1));">
+<div class="modern-card fade-in-up about-model-card" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.1));">
   <div class="modern-card-header">
     <h3 class="modern-card-title" style="font-size: 1.5rem;">🤖 About the Model</h3>
   </div>
@@ -138,7 +141,7 @@
     </div>
   </div>
   
-  <div style="margin-top: 1.5rem; padding: 1rem; background: white; border-radius: 10px;">
+  <div class="surface-light" style="margin-top: 1.5rem; padding: 1rem; background: white; border-radius: 10px;">
     <p style="color: #6b7280; font-size: 0.95rem; margin: 0;">
       <strong>⚠️ Disclaimer:</strong> This is a predictive model based on historical data and should be used as a 
       general guideline only. Actual admission decisions depend on many other factors including research experience, 

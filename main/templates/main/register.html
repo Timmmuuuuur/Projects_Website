@@ -3,17 +3,18 @@
 {% block content %}
 
 <div style="max-width: 500px; margin: 3rem auto;">
+  <p class="dev-prompt-line dev-font text-center" style="margin-bottom: 1rem;"><span class="dev-user">timur@portfolio</span>:<span class="dev-cmd">~</span>$ <span class="dev-cmd">useradd -m guest</span></p>
   <!-- Register Card -->
-  <div class="modern-card fade-in-up">
+  <div class="modern-card fade-in-up terminal-window kaveen-frame">
     <div class="modern-card-header text-center">
       <h1 class="modern-card-title" style="font-size: 2rem;">✨ Create Account</h1>
       <p class="modern-card-subtitle">Join to access all features</p>
     </div>
     
-    <form method="POST" class="modern-form" style="padding: 0;">
+    <form method="POST" class="modern-form modern-form--compact" style="padding: 0;">
       {% csrf_token %}
       
-      <div style="margin-bottom: 1.5rem;">
+      <div class="form-field-wrap">
         <label for="id_username">👤 Username</label>
         {{ form.username }}
         {% if form.username.help_text %}
@@ -23,12 +24,12 @@
         {% endif %}
       </div>
       
-      <div style="margin-bottom: 1.5rem;">
+      <div class="form-field-wrap">
         <label for="id_email">📧 Email Address</label>
         {{ form.email }}
       </div>
       
-      <div style="margin-bottom: 1.5rem;">
+      <div class="form-field-wrap">
         <label for="id_password1">🔑 Password</label>
         {{ form.password1 }}
         {% if form.password1.help_text %}
@@ -38,17 +39,17 @@
         {% endif %}
       </div>
       
-      <div style="margin-bottom: 1.5rem;">
+      <div class="form-field-wrap">
         <label for="id_password2">🔐 Confirm Password</label>
         {{ form.password2 }}
       </div>
       
-      <button type="submit" class="modern-btn modern-btn-secondary" style="width: 100%; font-size: 1.1rem; margin-top: 1rem;">
+      <button type="submit" class="modern-btn kaveen-glow-btn" style="width: 100%; font-size: 1.1rem; margin-top: 1rem;">
         Create Account
       </button>
     </form>
     
-    <div style="margin-top: 2rem; text-align: center; padding-top: 1.5rem; border-top: 2px solid #e5e7eb;">
+    <div class="auth-card-footer" style="margin-top: 2rem; text-align: center; padding-top: 1.5rem; border-top: 2px solid #e5e7eb;">
       <p style="color: #6b7280; margin: 0;">
         Already have an account? 
         <a href="/login" class="auth-link">Sign in here</a>

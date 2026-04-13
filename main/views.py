@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect
+from django.http import FileResponse
 from .models import Project
-from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import logout, authenticate, login
 from django.contrib import messages
 from django.utils.safestring import mark_safe
-from .forms import NewUserForm, AddressInputForm, UniAdminForm
+from .forms import NewUserForm, AddressInputForm, UniAdminForm, PortfolioAuthenticationForm
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -38,6 +38,35 @@ def homepage(request):
         context={'projects':Project.objects.all()}
     )
 
+
+def resume_download(request):
+    """
+    Prefer PDF if you add one under main/static/main/.
+    Otherwise serve the canonical text resume (synced from your latest CV — cv_timur_dauletov.txt).
+    """
+    pdf_paths = [
+        os.path.join(BASE_DIR, "main", "static", "main", "resume.pdf"),
+        os.path.join(BASE_DIR, "main", "static", "main", "Timur_Dauletov_Resume.pdf"),
+    ]
+    for path in pdf_paths:
+        if os.path.isfile(path):
+            return FileResponse(
+                open(path, "rb"),
+                as_attachment=True,
+                filename="Timur_Dauletov_Resume.pdf",
+            )
+
+    txt_path = os.path.join(BASE_DIR, "main", "static", "main", "cv_timur_dauletov.txt")
+    if os.path.isfile(txt_path):
+        return FileResponse(
+            open(txt_path, "rb"),
+            as_attachment=True,
+            filename="Timur_Dauletov_Resume.txt",
+            content_type="text/plain; charset=utf-8",
+        )
+
+    return redirect("https://www.linkedin.com/in/timur-dauletov")
+
 def register(request):
     if request.method == "POST":
         form = NewUserForm(request.POST)
@@ -68,7 +97,7 @@ def logout_request(request):
 
 def login_request(request):
     if request.method == 'POST':
-        form = AuthenticationForm(request=request, data=request.POST)
+        form = PortfolioAuthenticationForm(request=request, data=request.POST)
         if form.is_valid():
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password')
@@ -81,7 +110,7 @@ def login_request(request):
                 messages.error(request, "Invalid username or password.")
         else:
             messages.error(request, "Invalid username or password.")
-    form = AuthenticationForm()
+    form = PortfolioAuthenticationForm()
     return render(request=request,
                   template_name="main/login.html",
                   context={"form":form})

@@ -7,12 +7,13 @@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
 <!-- Hero Section with Enhanced Styling -->
-<div class="modern-card fade-in-up" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; position: relative; overflow: hidden;">
+<div class="modern-card fade-in-up hero-banner kaveen-frame" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; position: relative; overflow: hidden;">
   <!-- Animated Background Circles -->
-  <div style="position: absolute; width: 300px; height: 300px; background: rgba(255,255,255,0.1); border-radius: 50%; top: -100px; right: -100px; animation: float 6s ease-in-out infinite;"></div>
-  <div style="position: absolute; width: 200px; height: 200px; background: rgba(255,255,255,0.1); border-radius: 50%; bottom: -50px; left: -50px; animation: float 4s ease-in-out infinite reverse;"></div>
+  <div class="page-hero-bg-orb" style="position: absolute; width: 300px; height: 300px; background: rgba(255,255,255,0.1); border-radius: 50%; top: -100px; right: -100px; animation: float 6s ease-in-out infinite;"></div>
+  <div class="page-hero-bg-orb" style="position: absolute; width: 200px; height: 200px; background: rgba(255,255,255,0.1); border-radius: 50%; bottom: -50px; left: -50px; animation: float 4s ease-in-out infinite reverse;"></div>
   
   <div class="modern-card-header" style="position: relative; z-index: 1;">
+    <p class="dev-prompt-line dev-font" style="text-align: center; margin-bottom: 0.75rem;"><span class="dev-user">timur@portfolio</span>:<span class="dev-cmd">~/vrp</span>$ <span class="dev-cmd">./optimize --fleet</span></p>
     <h1 class="modern-card-title" style="color: white; -webkit-text-fill-color: white; font-size: 2.8rem; text-shadow: 0 2px 10px rgba(0,0,0,0.2);">
       🚗 Vehicle Routing Optimizer
     </h1>
@@ -152,10 +153,10 @@ document.getElementById('vrp-form').addEventListener('submit', function(e) {
     
     <!-- Map Controls Overlay -->
     <div style="position: absolute; top: 1rem; right: 1rem; z-index: 1000; display: flex; gap: 0.5rem;">
-      <button onclick="map.zoomIn()" style="width: 40px; height: 40px; background: white; border: none; border-radius: 8px; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.15); font-size: 1.2rem; transition: all 0.2s ease;">
+      <button type="button" class="map-control-btn" onclick="map.zoomIn()" style="width: 40px; height: 40px; background: white; border: none; border-radius: 8px; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.15); font-size: 1.2rem; transition: all 0.2s ease;">
         ➕
       </button>
-      <button onclick="map.zoomOut()" style="width: 40px; height: 40px; background: white; border: none; border-radius: 8px; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.15); font-size: 1.2rem; transition: all 0.2s ease;">
+      <button type="button" class="map-control-btn" onclick="map.zoomOut()" style="width: 40px; height: 40px; background: white; border: none; border-radius: 8px; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.15); font-size: 1.2rem; transition: all 0.2s ease;">
         ➖
       </button>
     </div>
@@ -181,21 +182,21 @@ document.getElementById('vrp-form').addEventListener('submit', function(e) {
     <p class="modern-card-subtitle">Powered by cutting-edge algorithms and optimization techniques</p>
   </div>
   <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 1.5rem;">
-    <div style="padding: 1.5rem; background: white; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 8px 16px rgba(0,0,0,0.12)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.08)'">
+    <div class="surface-light" style="padding: 1.5rem; background: white; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 8px 16px rgba(0,0,0,0.12)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.08)'">
       <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #6366f1, #4f46e5); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
         <span style="font-size: 1.5rem;">🧮</span>
       </div>
       <h4 style="color: #6366f1; margin-bottom: 0.75rem; font-size: 1.1rem; font-weight: 600;">Algorithm</h4>
       <p style="color: #4b5563; line-height: 1.6;">Tabu Search optimization with nearest-neighbor heuristics for efficient route planning</p>
     </div>
-    <div style="padding: 1.5rem; background: white; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 8px 16px rgba(0,0,0,0.12)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.08)'">
+    <div class="surface-light" style="padding: 1.5rem; background: white; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 8px 16px rgba(0,0,0,0.12)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.08)'">
       <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #10b981, #059669); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
         <span style="font-size: 1.5rem;">📐</span>
       </div>
       <h4 style="color: #10b981; margin-bottom: 0.75rem; font-size: 1.1rem; font-weight: 600;">Distance Calculation</h4>
       <p style="color: #4b5563; line-height: 1.6;">Haversine formula for accurate geographical distances accounting for Earth's curvature</p>
     </div>
-    <div style="padding: 1.5rem; background: white; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 8px 16px rgba(0,0,0,0.12)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.08)'">
+    <div class="surface-light" style="padding: 1.5rem; background: white; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 8px 16px rgba(0,0,0,0.12)'" onmouseout="this.style.transform=''; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.08)'">
       <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #f59e0b, #d97706); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
         <span style="font-size: 1.5rem;">🌐</span>
       </div>
@@ -205,7 +206,7 @@ document.getElementById('vrp-form').addEventListener('submit', function(e) {
   </div>
   
   <!-- Performance Metrics -->
-  <div style="margin-top: 2rem; padding: 1.5rem; background: white; border-radius: 12px; border-left: 4px solid #8b5cf6;">
+  <div class="surface-light" style="margin-top: 2rem; padding: 1.5rem; background: white; border-radius: 12px; border-left: 4px solid #8b5cf6;">
     <h4 style="color: #8b5cf6; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
       <span style="font-size: 1.5rem;">⚡</span>
       Performance Highlights
@@ -343,6 +344,7 @@ function initializeMap(routeData) {
     
     // Add legend entry with enhanced styling
     const legendItem = document.createElement('div');
+    legendItem.className = 'route-legend-item surface-light';
     legendItem.style.cssText = `
       padding: 1.25rem; 
       background: white; 
@@ -358,7 +360,7 @@ function initializeMap(routeData) {
           <strong style="color: ${color}; font-size: 1.1rem; display: flex; align-items: center; gap: 0.5rem;">
             🚗 Vehicle ${vehicleIdx + 1}
           </strong>
-          <div style="color: #6b7280; font-size: 0.95rem; margin-top: 0.5rem; display: flex; gap: 1rem;">
+          <div class="stat-caption" style="color: #6b7280; font-size: 0.95rem; margin-top: 0.5rem; display: flex; gap: 1rem;">
             <span>📍 ${route.addresses.length} stops</span>
             <span>📏 ${route.distance.toFixed(2)} km</span>
           </div>

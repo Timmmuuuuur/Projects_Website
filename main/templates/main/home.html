@@ -4,6 +4,9 @@
 <!-- Hero Section -->
 <section class="hero-section">
   <div class="fade-in-up">
+    <p class="dev-prompt-line dev-font text-center" aria-hidden="true">
+      <span class="dev-user">timur@portfolio</span>:<span class="dev-cmd">~</span>$ <span class="dev-cmd">whoami</span>
+    </p>
     <h1 class="hero-title">
       <span class="typing-animation">Hi, I'm Timur! 👋</span>
     </h1>
@@ -15,12 +18,22 @@
       <span class="hero-tag">📈 Finance Enthusiast</span>
       <span class="hero-tag">🎮 Esports Hobbyist</span>
     </div>
+
+    <!-- Kaveen-style primary CTAs -->
+    <div class="hero-cta-bar dev-font">
+      <a href="{% url 'main:resume' %}" class="hero-kaveen-btn hero-kaveen-btn--primary" title="Download latest resume (PDF)">
+        📄 Resume
+      </a>
+      <a href="#experience" class="hero-kaveen-btn hero-kaveen-btn--ghost">
+        ⚡ Experience
+      </a>
+    </div>
     
     <!-- Quick Stats -->
     <div style="margin-top: 3rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; max-width: 800px; margin-left: auto; margin-right: auto;">
       <div class="glass" style="padding: 1.5rem; border-radius: 16px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform=''">
-        <div style="font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem;">6+</div>
-        <div style="opacity: 0.9;">Co-op Experiences</div>
+        <div style="font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem;">7+</div>
+        <div style="opacity: 0.9;">Engineering Roles</div>
       </div>
       <div class="glass" style="padding: 1.5rem; border-radius: 16px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform=''">
         <div style="font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem;">10+</div>
@@ -35,31 +48,99 @@
 </section>
 
 <!-- About Section -->
-<div class="modern-card fade-in-up terminal-window" style="animation-delay: 0.1s;">
+<div class="modern-card fade-in-up terminal-window kaveen-frame" style="animation-delay: 0.1s;">
   <div class="modern-card-header">
     <h2 class="modern-card-title">About Me</h2>
     <p class="modern-card-subtitle" style="font-size: 1.15rem; line-height: 1.8;">
-      I'm a Computer Engineering graduate from the University of Waterloo with a passion for building 
-      innovative solutions that solve real-world problems. My expertise spans <strong>Data Engineering</strong>, 
-      <strong>Machine Learning</strong>, <strong>Full-Stack Development</strong>, and <strong>Quantitative Analysis</strong>.
-      I love combining algorithms, optimization techniques, and modern web technologies to create impactful projects.
+      I'm a Computer Engineering graduate from the University of Waterloo (AI option). I build
+      <strong>agentic AI</strong> and <strong>data systems</strong> — from security investigation workflows and LLM pipelines to
+      <strong>ETL</strong>, <strong>distributed backends</strong>, and <strong>full-stack</strong> products. I care about reliable infra,
+      measurable impact, and clean engineering.
     </p>
   </div>
   
   <!-- Skills Tags -->
-  <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.5rem;">
-    <span style="background: rgba(99, 102, 241, 0.1); color: var(--primary-color); padding: 0.5rem 1rem; border-radius: 20px; font-weight: 500; font-size: 0.9rem;">Python</span>
-    <span style="background: rgba(16, 185, 129, 0.1); color: var(--secondary-color); padding: 0.5rem 1rem; border-radius: 20px; font-weight: 500; font-size: 0.9rem;">SQL/PostgreSQL</span>
-    <span style="background: rgba(245, 158, 11, 0.1); color: var(--accent-color); padding: 0.5rem 1rem; border-radius: 20px; font-weight: 500; font-size: 0.9rem;">Django/FastAPI</span>
-    <span style="background: rgba(139, 92, 246, 0.1); color: #8b5cf6; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 500; font-size: 0.9rem;">Machine Learning</span>
-    <span style="background: rgba(236, 72, 153, 0.1); color: #ec4899; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 500; font-size: 0.9rem;">Data Engineering</span>
-    <span style="background: rgba(20, 184, 166, 0.1); color: #14b8a6; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 500; font-size: 0.9rem;">AWS/GCP</span>
-    <span style="background: rgba(249, 115, 22, 0.1); color: #f97316; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 500; font-size: 0.9rem;">Docker/Kubernetes</span>
+  <div class="skill-tag-row" style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.5rem;">
+    <span class="skill-tag skill-tag--indigo">Python / SQL / Go / Rust</span>
+    <span class="skill-tag skill-tag--green">ETL / Airflow / Pandas</span>
+    <span class="skill-tag skill-tag--amber">Django / FastAPI / Flask</span>
+    <span class="skill-tag skill-tag--violet">LLMs / Agents / RAG</span>
+    <span class="skill-tag skill-tag--pink">PostgreSQL / BigQuery / Redis</span>
+    <span class="skill-tag skill-tag--teal">AWS / GCP / Azure Data</span>
+    <span class="skill-tag skill-tag--orange">Docker / Kubernetes / Terraform</span>
   </div>
 </div>
 
+<!-- Experience (Kaveen-style timeline — anchor for hero CTA) -->
+<section id="experience" class="modern-card fade-in-up terminal-window kaveen-frame experience-section" style="animation-delay: 0.15s;" aria-labelledby="experience-heading">
+  <p class="dev-prompt-line dev-font text-center" aria-hidden="true">
+    <span class="dev-user">timur@portfolio</span>:<span class="dev-cmd">~/career</span>$ <span class="dev-cmd">cat experience.log --pager=never</span>
+  </p>
+  <div class="modern-card-header">
+    <h2 id="experience-heading" class="modern-card-title">Experience</h2>
+    <p class="modern-card-subtitle">
+      Synced with my latest uploaded resume — security AI, multi-agent infra, data/ML, and full-stack delivery across Waterloo, Toronto, Ottawa, and remote.
+    </p>
+  </div>
+  <div class="exp-timeline" role="list">
+    <article class="exp-card" role="listitem">
+      <div class="exp-card__dates">Dec 2025 – Present</div>
+      <h3 class="exp-card__title">AI Software Engineer</h3>
+      <div class="exp-card__company">eSentire · Waterloo, ON</div>
+      <p class="exp-card__summary">Security AI agents — meta agents, HITL workflows, planning &amp; cost control, investigation pipelines. Terraform, AWS (S3, EC2, Lambda, Bedrock), Kubernetes, Claude Code &amp; Agent SDKs. Analytics UI &amp; workflow automation.</p>
+    </article>
+    <article class="exp-card" role="listitem">
+      <div class="exp-card__dates">2025</div>
+      <h3 class="exp-card__title">Member of Technical Staff <span class="exp-card__type">Contract</span></h3>
+      <div class="exp-card__company">Tzafon.ai · Remote (SF)</div>
+      <p class="exp-card__summary">Golang middleware on Kubernetes, Supabase &amp; Docker — Multi-Agent Mode CPU/MEM metrics. Rate limiter &amp; JWT caching for 128+ parallel agents; ~500% distributed throughput gain.</p>
+    </article>
+    <article class="exp-card" role="listitem">
+      <div class="exp-card__dates">May 2024 – Aug 2024</div>
+      <h3 class="exp-card__title">Full Stack &amp; ML Developer (LLM / NLP)</h3>
+      <div class="exp-card__company">COGNIXION · Toronto, ON</div>
+      <p class="exp-card__summary">FastAPI STT/TTS with OpenAI, RLHF &amp; GCP. RAG &amp; BERT/Ollama (+300% conversation quality). LangChain + HuggingFace emotion; PyTorch CV. Gunicorn &amp; MySQL in production.</p>
+    </article>
+    <article class="exp-card" role="listitem">
+      <div class="exp-card__dates">Jan 2022 – Apr 2022</div>
+      <h3 class="exp-card__title">AI &amp; Data Engineer</h3>
+      <div class="exp-card__company">Loblaw Companies Limited · Toronto, ON</div>
+      <p class="exp-card__summary">NLTK topic modeling on HR emails (100% key topics). ETL &amp; EDA on distribution data linking underperformance to store design factors.</p>
+    </article>
+    <article class="exp-card" role="listitem">
+      <div class="exp-card__dates">May 2021 – Jun 2021</div>
+      <h3 class="exp-card__title">Software Engineer</h3>
+      <div class="exp-card__company">Cisco Systems · Ottawa, ON</div>
+      <p class="exp-card__summary">Python automation for 1000+ daily GitHub commits to the Build team. Perl tooling to trace error-introducing merges and alert affected developers.</p>
+    </article>
+    <article class="exp-card" role="listitem">
+      <div class="exp-card__dates">Sep 2020 – Dec 2020</div>
+      <h3 class="exp-card__title">Test Automation Developer</h3>
+      <div class="exp-card__company">Ford Motor Company · Ottawa, ON</div>
+      <p class="exp-card__summary">Python tests for antenna streaming &amp; power management to AT&amp;T APIs (happy path &amp; edge cases). MQTT/auth scripts QNX↔Linux for ECUs over CAN.</p>
+    </article>
+    <article class="exp-card" role="listitem">
+      <div class="exp-card__dates">Jan 2020 – Apr 2020</div>
+      <h3 class="exp-card__title">Quality Assurance Developer</h3>
+      <div class="exp-card__company">Ford Motor Company · Ottawa, ON</div>
+      <p class="exp-card__summary">Quality and validation work on embedded/automotive software stacks (paired with later test automation term).</p>
+    </article>
+    <article class="exp-card exp-card--education" role="listitem">
+      <div class="exp-card__dates">2019 – 2024</div>
+      <h3 class="exp-card__title">BASc Computer Engineering <span class="exp-card__type">AI Option</span></h3>
+      <div class="exp-card__company">University of Waterloo</div>
+      <p class="exp-card__summary">Honors, 5 Excellent standings; coursework in Multi-Agent Systems, RL &amp; advanced ML; $15k scholarships. UW Chess Club President — 21→52 tournament players in ~4 months.</p>
+    </article>
+  </div>
+  <p class="exp-footnote dev-font text-center">
+    <a href="{% url 'main:resume' %}" class="exp-footnote__link">↓ Download resume (PDF)</a>
+    <span class="exp-footnote__sep">·</span>
+    <a href="https://www.linkedin.com/in/timur-dauletov" target="_blank" rel="noopener" class="exp-footnote__link">LinkedIn</a>
+  </p>
+</section>
+
 <!-- Projects Section -->
-<div class="modern-card fade-in-up terminal-window" style="animation-delay: 0.2s;">
+<div class="modern-card fade-in-up terminal-window kaveen-frame" style="animation-delay: 0.2s;">
   <div class="modern-card-header">
     <h2 class="modern-card-title">Featured Projects</h2>
     <p class="modern-card-subtitle">
@@ -80,14 +161,14 @@
         <p><strong>Technologies:</strong> Python, Django, OpenStreetMap API, Leaflet.js, Haversine Algorithm, Tabu Search</p>
         <p><strong>Features:</strong> Real-time geocoding with caching, Multi-vehicle optimization, Interactive maps</p>
       </div>
-      <a href="/vrp" class="modern-btn">
+      <a href="/vrp" class="modern-btn kaveen-glow-btn">
         Try it Now →
       </a>
     </div>
     
     <!-- Stock Analysis Project - NEW -->
     <div class="feature-card" style="border: 2px solid rgba(99, 102, 241, 0.2);">
-      <div style="position: absolute; top: 1rem; right: 1rem; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: white; padding: 0.25rem 0.75rem; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">
+      <div class="featured-badge" style="position: absolute; top: 1rem; right: 1rem; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: white; padding: 0.25rem 0.75rem; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">
         Featured
       </div>
       <div class="feature-icon" style="background: linear-gradient(135deg, #10b981, #059669);">📈</div>
@@ -124,48 +205,49 @@
   </div>
   
   <!-- Project Highlights -->
-  <div style="margin-top: 3rem; padding: 2rem; background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(16, 185, 129, 0.05)); border-radius: 16px; border: 2px dashed rgba(99, 102, 241, 0.2);">
-    <h3 style="color: var(--primary-color); margin-bottom: 1.5rem; text-align: center; font-size: 1.3rem;">🎯 Project Highlights</h3>
+  <div class="project-highlights-box">
+    <h3>🎯 Project Highlights</h3>
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
       <div style="text-align: center;">
         <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">⚡</div>
-        <div style="font-weight: 600; color: var(--text-primary); margin-bottom: 0.25rem;">Real-time Processing</div>
-        <div style="color: var(--text-secondary); font-size: 0.9rem;">Sub-second response times</div>
+        <div class="highlight-item-title" style="font-weight: 600; margin-bottom: 0.25rem;">Real-time Processing</div>
+        <div class="highlight-item-desc" style="font-size: 0.9rem;">Sub-second response times</div>
       </div>
       <div style="text-align: center;">
         <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🗺️</div>
-        <div style="font-weight: 600; color: var(--text-primary); margin-bottom: 0.25rem;">Interactive Visualizations</div>
-        <div style="color: var(--text-secondary); font-size: 0.9rem;">Dynamic maps & charts</div>
+        <div class="highlight-item-title" style="font-weight: 600; margin-bottom: 0.25rem;">Interactive Visualizations</div>
+        <div class="highlight-item-desc" style="font-size: 0.9rem;">Dynamic maps & charts</div>
       </div>
       <div style="text-align: center;">
         <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🔧</div>
-        <div style="font-weight: 600; color: var(--text-primary); margin-bottom: 0.25rem;">Production-Ready</div>
-        <div style="color: var(--text-secondary); font-size: 0.9rem;">Deployed & scalable</div>
+        <div class="highlight-item-title" style="font-weight: 600; margin-bottom: 0.25rem;">Production-Ready</div>
+        <div class="highlight-item-desc" style="font-size: 0.9rem;">Deployed & scalable</div>
       </div>
       <div style="text-align: center;">
         <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">📊</div>
-        <div style="font-weight: 600; color: var(--text-primary); margin-bottom: 0.25rem;">Data-Driven</div>
-        <div style="color: var(--text-secondary); font-size: 0.9rem;">Real market & historical data</div>
+        <div class="highlight-item-title" style="font-weight: 600; margin-bottom: 0.25rem;">Data-Driven</div>
+        <div class="highlight-item-desc" style="font-size: 0.9rem;">Real market & historical data</div>
       </div>
     </div>
   </div>
 </div>
 
 <!-- Call to Action -->
-<div class="modern-card text-center fade-in-up" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; position: relative; overflow: hidden; animation-delay: 0.3s;">
+<div class="modern-card text-center fade-in-up homepage-cta kaveen-frame" style="animation-delay: 0.3s;">
   <!-- Animated Background -->
-  <div style="position: absolute; width: 400px; height: 400px; background: rgba(255,255,255,0.05); border-radius: 50%; top: -200px; right: -200px; animation: float 8s ease-in-out infinite;"></div>
-  <div style="position: absolute; width: 300px; height: 300px; background: rgba(255,255,255,0.05); border-radius: 50%; bottom: -150px; left: -150px; animation: float 6s ease-in-out infinite reverse;"></div>
+  <div class="page-hero-bg-orb" style="position: absolute; width: 400px; height: 400px; background: rgba(255,255,255,0.05); border-radius: 50%; top: -200px; right: -200px; animation: float 8s ease-in-out infinite;"></div>
+  <div class="page-hero-bg-orb" style="position: absolute; width: 300px; height: 300px; background: rgba(255,255,255,0.05); border-radius: 50%; bottom: -150px; left: -150px; animation: float 6s ease-in-out infinite reverse;"></div>
   
   <div class="modern-card-header" style="position: relative; z-index: 1;">
-    <h2 style="color: white; -webkit-text-fill-color: white; font-size: 2.2rem; margin-bottom: 1rem;">Ready to Explore? 🚀</h2>
-    <p style="color: rgba(255,255,255,0.95); font-size: 1.15rem; line-height: 1.8; max-width: 700px; margin: 0 auto;">
+    <p class="dev-prompt-line dev-font" style="text-align: center; margin-bottom: 1rem;"><span class="dev-user">timur@portfolio</span>:<span class="dev-cmd">~</span>$ <span class="dev-cmd">ls ./projects</span></p>
+    <h2 class="homepage-cta-title">Ready to Explore? 🚀</h2>
+    <p class="homepage-cta-lead">
       These projects demonstrate practical applications of algorithms, machine learning, and quantitative analysis. 
       Feel free to try them out and see the results in real-time!
     </p>
   </div>
   <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem; position: relative; z-index: 1;">
-    <a href="/vrp" class="modern-btn" style="background: white; color: #667eea; box-shadow: 0 8px 16px rgba(0,0,0,0.2);">
+    <a href="/vrp" class="modern-btn kaveen-glow-btn" style="box-shadow: 0 8px 16px rgba(0,0,0,0.2);">
       🚗 Vehicle Routing
     </a>
     <a href="/stocks" class="modern-btn" style="background: rgba(16, 185, 129, 0.9); backdrop-filter: blur(10px); box-shadow: 0 8px 16px rgba(0,0,0,0.2);">
@@ -177,18 +259,18 @@
   </div>
   
   <!-- Contact Info -->
-  <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.2); position: relative; z-index: 1;">
+  <div class="homepage-cta-footer" style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.2); position: relative; z-index: 1;">
     <p style="color: rgba(255,255,255,0.9); font-size: 0.95rem; margin-bottom: 1rem;">
       Interested in collaborating or want to learn more?
     </p>
     <div style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
-      <a href="https://github.com/dauletov" target="_blank" style="color: white; text-decoration: none; display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background: rgba(255,255,255,0.15); border-radius: 8px; transition: all 0.3s ease;" onmouseover="this.style.background='rgba(255,255,255,0.25)'" onmouseout="this.style.background='rgba(255,255,255,0.15)'">
+      <a class="homepage-cta-social-link" href="https://github.com/dauletov" target="_blank" style="color: white; text-decoration: none; display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background: rgba(255,255,255,0.15); border-radius: 8px; transition: all 0.3s ease;" onmouseover="this.style.background='rgba(255,255,255,0.25)'" onmouseout="this.style.background='rgba(255,255,255,0.15)'">
         <span>💻</span> GitHub
       </a>
-      <a href="https://linkedin.com/in/timur-dauletov" target="_blank" style="color: white; text-decoration: none; display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background: rgba(255,255,255,0.15); border-radius: 8px; transition: all 0.3s ease;" onmouseover="this.style.background='rgba(255,255,255,0.25)'" onmouseout="this.style.background='rgba(255,255,255,0.15)'">
+      <a class="homepage-cta-social-link" href="https://linkedin.com/in/timur-dauletov" target="_blank" style="color: white; text-decoration: none; display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background: rgba(255,255,255,0.15); border-radius: 8px; transition: all 0.3s ease;" onmouseover="this.style.background='rgba(255,255,255,0.25)'" onmouseout="this.style.background='rgba(255,255,255,0.15)'">
         <span>🔗</span> LinkedIn
       </a>
-      <a href="mailto:timur.dauletov@uwaterloo.ca" style="color: white; text-decoration: none; display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background: rgba(255,255,255,0.15); border-radius: 8px; transition: all 0.3s ease;" onmouseover="this.style.background='rgba(255,255,255,0.25)'" onmouseout="this.style.background='rgba(255,255,255,0.15)'">
+      <a class="homepage-cta-social-link" href="mailto:timur.dauletov@uwaterloo.ca" style="color: white; text-decoration: none; display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background: rgba(255,255,255,0.15); border-radius: 8px; transition: all 0.3s ease;" onmouseover="this.style.background='rgba(255,255,255,0.25)'" onmouseout="this.style.background='rgba(255,255,255,0.15)'">
         <span>📧</span> Email
       </a>
     </div>

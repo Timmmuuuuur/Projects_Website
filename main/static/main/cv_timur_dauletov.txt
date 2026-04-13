@@ -1,0 +1,58 @@
+TIMUR DAULETOV
+dauletov.com | timur.dauletov@uwaterloo.ca | +1 705-772-2870 | Github | LinkedIn
+
+TECHNICAL SKILLS
+Languages: Python, SQL, JavaScript, TypeScript, Golang, Rust, C++/C, Java, R, Swift, HTML5, CSS
+Data Engineering: ETL Pipelines, Apache Airflow, Pandas, NumPy, BigQuery, PostgreSQL, MySQL, MongoDB, Redis, Data Modeling
+Cloud & Infrastructure: AWS (S3, Lambda, RDS, Glue), GCP (BigQuery, Cloud Functions), Azure Data Lake, Docker, Kubernetes
+
+EXPERIENCE
+
+AI Software Engineer — eSentire (Full-time, Waterloo, ON)                          Dec 2025 – Present
+• Security AI agents development — meta agents for automation, human-in-the-loop agentic workflows, planning loops, cost control, and investigation pipelines using Terraform, AWS (S3, EC2, Lambda, Bedrock), Kubernetes, Claude Code, and Agent SDKs.
+• Investigation workflow automation, agentic workflow cost optimization and enforcement, analytics UI implementation.
+
+Member of Technical Staff — Tzafon.ai (Contract, Remote — San Francisco, CA)      2025
+• Golang middleware bridging Kubernetes, Supabase, and Docker, exposing Multi-Agent Mode CPU/MEM metrics.
+• Optimized rate limiter concurrency for multi-agent shared memory, agentic database lookup & JWT caching — 500% speedup for distributed access across 128+ parallel agents.
+
+Full Stack and ML Developer (LLM and NLP) — COGNIXION — Toronto, ON               May 2024 – Aug 2024
+• Real-time Speech-to-Text (STT) & Text-to-Speech (TTS) pipeline using FastAPI, OpenAI, RLHF, and Google Cloud.
+• Trained models (Ollama, BERT) with RAG, improving AI conversation accuracy by 300%; Flask for infrastructure.
+• Emotion classifier with LangChain and HuggingFace; Computer Vision with PyTorch and Google APIs for user environment identification; Gunicorn and MySQL for production.
+
+AI and Data Engineer — Loblaw Companies Limited — Toronto, ON                     Jan 2022 – Apr 2022
+• NLP topic modeling with NLTK on HR emails, capturing 100% of key topics.
+• ETL & EDA on product distribution to identify underperforming franchises tied to store design issues.
+
+Software Engineer — Cisco Systems — Ottawa, ON                                     May 2021 – Jun 2021
+• Python automation for feedback relays from 1000+ GitHub commits per day for the Build team.
+• Perl-based bug detection tracking commits, flagging error-introducing changes on main, alerting affected developers.
+
+Test Automation Developer — Ford Motor Company — Ottawa, ON                      Sep 2020 – Dec 2020
+• Python automated tests for data streaming and power management through vehicle antennas to AT&T REST APIs (happy path, edge cases, critical vs non-critical bugs).
+• MQTT/authentication validation scripts (QNX to Linux) for ECU interoperability over CAN buses.
+
+Quality Assurance Developer — Ford Motor Company — Ottawa, ON                      Jan 2020 – Apr 2020
+
+PROJECTS
+
+Campus Alert — Campus-wide Alerting System                                         Flutter / Django / MySQL
+• Led full-stack mobile alert system; collaborated with users and admins on requirements.
+• Flutter app with JWT login, Django REST backend, Docker deployment.
+• Agile delivery, field research, API docs, and user testing reports.
+
+Vehicle Routing Optimizer — Real-Time Fleet Optimization Engine                      Python / Django / OpenStreetMap
+• Production Django backend with real-time route optimization, concurrent fleet requests, optimized Google Maps routes for logistics.
+
+ACTIVITIES
+
+UW Chess Club President — University of Waterloo                                   Waterloo, ON
+• Grew peak tournament attendance from 21 to 52 players within ~4 months via media presence and tournament programming.
+
+EDUCATION
+
+BASc, Computer Engineering, Artificial Intelligence Option — University of Waterloo   Sep 2019 – Oct 2024
+• Honors Engineering, 5 Excellent Standings (80.0%+ average).
+• Coursework: Multi-Agent Systems, Reinforcement Learning, Advanced Machine Learning.
+• Annual total scholarship: $15,000.

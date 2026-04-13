@@ -27,6 +27,10 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -297,12 +301,93 @@ body {
   margin-bottom: 1.5rem;
 }
 
-.modern-form input:focus,
-.modern-form textarea:focus {
+/* Purple focus ring only on light (gradient) theme — terminal uses mint glow below */
+body:not(.terminal-theme) .modern-form input:focus,
+body:not(.terminal-theme) .modern-form textarea:focus {
   outline: none;
   border-color: var(--primary-color);
   background: white;
   box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+/*
+ * Materialize sets text inputs to ~3rem height — too tall next to our labels.
+ * Tight, “pristine” fields for auth + all .modern-form pages.
+ */
+.modern-form input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="button"]),
+.modern-form textarea {
+  height: auto !important;
+  min-height: 2.5rem;
+  line-height: 1.45 !important;
+  padding: 0.5rem 0.85rem !important;
+  margin-bottom: 0.35rem !important;
+  font-size: 0.95rem !important;
+  box-sizing: border-box !important;
+}
+
+.modern-form textarea {
+  min-height: 5.5rem;
+  padding-top: 0.55rem !important;
+}
+
+.modern-form--compact .form-field-wrap {
+  margin-bottom: 1rem !important;
+}
+
+/*
+ * Auth fields: Materialize’s default input height is ~3rem; .browser-default + these rules
+ * keep login/register inputs short and aligned with the terminal palette.
+ */
+.portfolio-form-input {
+  border-radius: 8px !important;
+}
+
+.modern-container input.browser-default.portfolio-form-input {
+  height: auto !important;
+  min-height: 2.125rem !important;
+  max-height: 2.75rem !important;
+  padding: 0.4rem 0.75rem !important;
+  margin-bottom: 0.25rem !important;
+  font-size: 0.9375rem !important;
+  line-height: 1.35 !important;
+  box-sizing: border-box !important;
+}
+
+body.terminal-theme .modern-form--compact .portfolio-form-input,
+body.terminal-theme .modern-form--compact input.browser-default {
+  background: rgba(15, 23, 42, 0.92) !important;
+  border: 1px solid rgba(0, 255, 157, 0.28) !important;
+  color: #e2e8f0 !important;
+  -webkit-text-fill-color: #e2e8f0 !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+body.terminal-theme .modern-form--compact .portfolio-form-input:focus,
+body.terminal-theme .modern-form--compact input.browser-default:focus {
+  outline: none !important;
+  border-color: #34d399 !important;
+  box-shadow:
+    0 0 0 1px rgba(52, 211, 153, 0.65),
+    0 0 20px rgba(0, 212, 255, 0.18) !important;
+  background: rgba(15, 23, 42, 0.98) !important;
+}
+
+body.terminal-theme .modern-form--compact label {
+  color: #7dd3fc !important;
+  font-weight: 500 !important;
+  font-size: 0.78rem !important;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 0.35rem !important;
+}
+
+/* Nested white form panel inside a card (login/register) — blend with card */
+.modern-card.terminal-window > .modern-form {
+  background: transparent;
+  box-shadow: none;
+  padding: 0;
+  border-radius: 0;
 }
 
 /* Modern Buttons */
@@ -612,9 +697,9 @@ body {
   height: 300px;
 }
 
-/* Input Focus Glow */
-.modern-form input:focus,
-.modern-form textarea:focus {
+/* Input focus pulse — light theme only (purple); terminal uses static mint ring */
+body:not(.terminal-theme) .modern-form input:focus,
+body:not(.terminal-theme) .modern-form textarea:focus {
   animation: pulse-glow 2s ease-in-out infinite;
 }
 
@@ -904,6 +989,23 @@ body.terminal-theme .modern-btn:hover {
   transform: translateY(-3px);
 }
 
+/* Mint CTA buttons stay high-contrast in terminal theme */
+body.terminal-theme a.kaveen-glow-btn,
+body.terminal-theme button.kaveen-glow-btn {
+  background: linear-gradient(135deg, #00ff9d, #00d4ff) !important;
+  color: #0a0e27 !important;
+  border: 2px solid transparent !important;
+  box-shadow: 0 0 28px rgba(0, 255, 157, 0.35) !important;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+body.terminal-theme a.kaveen-glow-btn:hover,
+body.terminal-theme button.kaveen-glow-btn:hover {
+  box-shadow: 0 0 40px rgba(0, 212, 255, 0.45) !important;
+  border-color: transparent !important;
+}
+
 body.terminal-theme .feature-card {
   background: rgba(15, 23, 42, 0.6);
   border: 1px solid rgba(0, 255, 157, 0.2);
@@ -953,8 +1055,169 @@ body.terminal-theme .step-item {
   border: 1px solid rgba(0, 255, 157, 0.2);
 }
 
+body.terminal-theme .steps-container {
+  background: rgba(15, 23, 42, 0.55) !important;
+  border: 1px solid rgba(0, 255, 157, 0.18);
+}
+
 body.terminal-theme strong {
   color: #00ff9d;
+}
+
+/* ---------- Terminal: form fields (no harsh white boxes) ---------- */
+body.terminal-theme .modern-form {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+body.terminal-theme .modern-form label {
+  color: #a7f3d0 !important;
+}
+
+body.terminal-theme .modern-form input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="button"]),
+body.terminal-theme .modern-form textarea,
+body.terminal-theme .modern-form select {
+  background: rgba(10, 14, 39, 0.82) !important;
+  border: 1px solid rgba(0, 255, 157, 0.32) !important;
+  color: #e2e8f0 !important;
+  -webkit-text-fill-color: #e2e8f0 !important;
+}
+
+body.terminal-theme .modern-form input:focus,
+body.terminal-theme .modern-form textarea:focus,
+body.terminal-theme .modern-form select:focus {
+  outline: none !important;
+  border-color: #34d399 !important;
+  box-shadow:
+    0 0 0 1px rgba(52, 211, 153, 0.55),
+    0 0 18px rgba(0, 212, 255, 0.14) !important;
+  background: rgba(15, 23, 42, 0.95) !important;
+}
+
+body.terminal-theme .modern-form input::placeholder,
+body.terminal-theme .modern-form textarea::placeholder {
+  color: rgba(148, 163, 184, 0.85) !important;
+}
+
+body.terminal-theme .modern-card small,
+body.terminal-theme .modern-form small {
+  color: #8b9dc3 !important;
+}
+
+/* Autofill (Safari/Chrome) — stay on-theme */
+body.terminal-theme .modern-form input:-webkit-autofill,
+body.terminal-theme .modern-form input:-webkit-autofill:hover,
+body.terminal-theme .modern-form input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px rgba(15, 23, 42, 0.95) inset !important;
+  -webkit-text-fill-color: #e2e8f0 !important;
+  caret-color: #00ff9d;
+  border: 1px solid rgba(0, 255, 157, 0.35) !important;
+}
+
+/* Auth card footer */
+body.terminal-theme .auth-card-footer {
+  border-top-color: rgba(0, 255, 157, 0.22) !important;
+}
+
+body.terminal-theme .auth-card-footer p {
+  color: #8b9dc3 !important;
+}
+
+body.terminal-theme .auth-link {
+  color: #5eead4 !important;
+}
+
+body.terminal-theme .auth-link:hover {
+  color: #00ff9d !important;
+}
+
+/* Inline “white sheet” panels → dark glass */
+body.terminal-theme .surface-light {
+  background: rgba(15, 23, 42, 0.72) !important;
+  border: 1px solid rgba(0, 255, 157, 0.2) !important;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25) !important;
+}
+
+body.terminal-theme .surface-light p,
+body.terminal-theme .surface-light li,
+body.terminal-theme .surface-light ul {
+  color: #94a3b8 !important;
+  border-color: rgba(0, 255, 157, 0.12) !important;
+}
+
+body.terminal-theme .surface-light h3,
+body.terminal-theme .surface-light h4 {
+  text-shadow: 0 0 20px rgba(0, 255, 157, 0.15);
+}
+
+body.terminal-theme .surface-light code {
+  display: block;
+  background: rgba(10, 14, 39, 0.9) !important;
+  color: #7dd3fc !important;
+  border: 1px solid rgba(0, 255, 157, 0.25) !important;
+}
+
+/* Softer tinted info rows (stocks overview, etc.) */
+body.terminal-theme .surface-tint {
+  background: rgba(15, 23, 42, 0.55) !important;
+  border-left-color: rgba(0, 255, 157, 0.45) !important;
+}
+
+body.terminal-theme .surface-tint p,
+body.terminal-theme .surface-tint h3 {
+  color: #94a3b8 !important;
+}
+
+body.terminal-theme .surface-tint h3 {
+  color: #7dd3fc !important;
+}
+
+/* Map floating controls */
+body.terminal-theme .map-control-btn {
+  background: rgba(15, 23, 42, 0.88) !important;
+  border: 1px solid rgba(0, 255, 157, 0.35) !important;
+  color: #00ff9d !important;
+  box-shadow: 0 0 16px rgba(0, 255, 157, 0.15) !important;
+}
+
+body.terminal-theme .map-control-btn:hover {
+  background: rgba(0, 255, 157, 0.12) !important;
+}
+
+/* Stocks / pages: bottom gradient CTA band in terminal mode */
+body.terminal-theme .page-cta-band {
+  background: rgba(10, 14, 39, 0.92) !important;
+  color: #00ff9d !important;
+  border: 1px solid rgba(0, 255, 157, 0.35) !important;
+}
+
+body.terminal-theme .page-cta-band h2,
+body.terminal-theme .page-cta-band .modern-card-title {
+  color: #00ff9d !important;
+  -webkit-text-fill-color: #00ff9d !important;
+}
+
+body.terminal-theme .page-cta-band p {
+  color: #8b9dc3 !important;
+}
+
+body.terminal-theme .page-cta-band .glass {
+  background: rgba(0, 255, 157, 0.08) !important;
+  border: 1px solid rgba(0, 255, 157, 0.3) !important;
+  color: #a7f3d0 !important;
+}
+
+body.terminal-theme .stat-caption {
+  color: #8b9dc3 !important;
+}
+
+body.terminal-theme .about-model-card p {
+  color: #94a3b8 !important;
+}
+
+body.terminal-theme .algo-section-card {
+  background: rgba(15, 23, 42, 0.65) !important;
+  border: 1px solid rgba(0, 255, 157, 0.15);
 }
 
 /* Theme Toggle Button */
@@ -1118,5 +1381,467 @@ body {
 .hero-title,
 .hero-subtitle {
   transition: all 0.5s ease;
+}
+
+/* ============================================
+   KAVEEN-STYLE DEV AESTHETIC (navbar unchanged)
+   ============================================ */
+
+.dev-font {
+  font-family: 'JetBrains Mono', 'Courier New', Consolas, monospace;
+}
+
+/* Terminal-style prompt line (visible on purple gradient too) */
+.dev-prompt-line {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.95rem;
+  color: rgba(0, 255, 200, 0.95);
+  text-shadow: 0 0 18px rgba(0, 255, 200, 0.35);
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.02em;
+}
+
+.dev-prompt-line .dev-user {
+  color: #7dd3fc;
+}
+
+.dev-prompt-line .dev-cmd {
+  color: #a7f3d0;
+}
+
+/* Subtle “IDE window” frame on cards (light theme) */
+.kaveen-frame {
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.06) inset,
+    0 12px 40px -12px rgba(99, 102, 241, 0.25);
+}
+
+body.terminal-theme .kaveen-frame {
+  border-color: rgba(0, 255, 157, 0.35);
+  box-shadow: 0 0 40px rgba(0, 212, 255, 0.08);
+}
+
+/* Mint/cyan glow CTA — Kaveen-like primary action */
+.kaveen-glow-btn {
+  background: linear-gradient(135deg, #22d3ee, #34d399) !important;
+  color: #0f172a !important;
+  font-weight: 700;
+  box-shadow: 0 0 28px rgba(34, 211, 238, 0.45), 0 4px 14px rgba(0, 0, 0, 0.15);
+  border: none !important;
+}
+
+.kaveen-glow-btn:hover {
+  box-shadow: 0 0 40px rgba(52, 211, 153, 0.55), 0 6px 20px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+}
+
+body.terminal-theme .kaveen-glow-btn {
+  background: linear-gradient(135deg, #00ff9d, #00d4ff) !important;
+  color: #0a0e27 !important;
+}
+
+/* Hero CTAs (Kaveen-style: Resume + Experience) */
+.hero-cta-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.hero-kaveen-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.65rem 1.5rem;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.hero-kaveen-btn--primary {
+  background: linear-gradient(135deg, #22d3ee, #34d399);
+  color: #0f172a;
+  box-shadow: 0 0 24px rgba(34, 211, 238, 0.4), 0 4px 14px rgba(0, 0, 0, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.hero-kaveen-btn--primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 32px rgba(52, 211, 153, 0.5), 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+.hero-kaveen-btn--ghost {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  border: 2px solid rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(8px);
+}
+
+.hero-kaveen-btn--ghost:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.75);
+  transform: translateY(-2px);
+}
+
+body.terminal-theme .hero-kaveen-btn--primary {
+  background: linear-gradient(135deg, #00ff9d, #00d4ff) !important;
+  color: #0a0e27 !important;
+  box-shadow: 0 0 28px rgba(0, 255, 157, 0.35) !important;
+}
+
+body.terminal-theme .hero-kaveen-btn--ghost {
+  background: rgba(0, 255, 157, 0.08) !important;
+  color: #00ff9d !important;
+  border-color: rgba(0, 255, 157, 0.45) !important;
+}
+
+body.terminal-theme .hero-kaveen-btn--ghost:hover {
+  background: rgba(0, 255, 157, 0.15) !important;
+  border-color: #00ff9d !important;
+}
+
+/* Experience timeline */
+.experience-section .modern-card-header {
+  text-align: center;
+}
+
+.exp-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  position: relative;
+  padding-left: 0.5rem;
+}
+
+.exp-timeline::before {
+  content: "";
+  position: absolute;
+  left: 0.65rem;
+  top: 0.35rem;
+  bottom: 0.35rem;
+  width: 2px;
+  background: linear-gradient(180deg, rgba(99, 102, 241, 0.35), rgba(16, 185, 129, 0.35));
+  border-radius: 2px;
+}
+
+.exp-card {
+  position: relative;
+  margin-left: 1.35rem;
+  padding: 1.1rem 1.25rem;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(99, 102, 241, 0.15);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.exp-card::before {
+  content: "";
+  position: absolute;
+  left: -1.15rem;
+  top: 1.25rem;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.9);
+}
+
+.exp-card:hover {
+  transform: translateX(4px);
+  box-shadow: 0 8px 28px rgba(99, 102, 241, 0.14);
+}
+
+.exp-card--education {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.06), rgba(16, 185, 129, 0.06));
+  border-style: dashed;
+}
+
+.exp-card__dates {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-bottom: 0.35rem;
+  letter-spacing: 0.02em;
+}
+
+.exp-card__title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.2rem;
+  line-height: 1.35;
+}
+
+.exp-card__type {
+  display: inline-block;
+  margin-left: 0.35rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.12rem 0.45rem;
+  border-radius: 6px;
+  background: rgba(99, 102, 241, 0.12);
+  color: var(--primary-color);
+  vertical-align: middle;
+}
+
+.exp-card__company {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--secondary-color);
+  margin-bottom: 0.45rem;
+}
+
+.exp-card__summary {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  margin: 0;
+}
+
+.exp-footnote {
+  margin-top: 1.75rem;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.exp-footnote__sep {
+  margin: 0 0.5rem;
+  opacity: 0.5;
+}
+
+.exp-footnote__link {
+  color: var(--primary-color);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.exp-footnote__link:hover {
+  text-decoration: underline;
+}
+
+body.terminal-theme .exp-timeline::before {
+  background: linear-gradient(180deg, rgba(0, 255, 157, 0.45), rgba(0, 212, 255, 0.35));
+}
+
+body.terminal-theme .exp-card {
+  background: rgba(10, 14, 39, 0.78) !important;
+  border: 1px solid rgba(0, 255, 157, 0.22) !important;
+  box-shadow: 0 0 24px rgba(0, 212, 255, 0.06) !important;
+}
+
+body.terminal-theme .exp-card::before {
+  box-shadow: 0 0 0 3px rgba(10, 14, 39, 0.95);
+  background: linear-gradient(135deg, #00ff9d, #00d4ff);
+}
+
+body.terminal-theme .exp-card--education {
+  background: rgba(15, 23, 42, 0.85) !important;
+  border-color: rgba(0, 255, 157, 0.3) !important;
+}
+
+body.terminal-theme .exp-card__dates {
+  color: #5eead4 !important;
+}
+
+body.terminal-theme .exp-card__title {
+  color: #e2e8f0 !important;
+}
+
+body.terminal-theme .exp-card__type {
+  background: rgba(0, 255, 157, 0.12) !important;
+  color: #00ff9d !important;
+}
+
+body.terminal-theme .exp-card__company {
+  color: #7dd3fc !important;
+}
+
+body.terminal-theme .exp-card__summary {
+  color: #94a3b8 !important;
+}
+
+body.terminal-theme .exp-footnote {
+  color: #8b9dc3 !important;
+}
+
+body.terminal-theme .exp-footnote__link {
+  color: #00ff9d !important;
+}
+
+/* Skill pills — use classes instead of only inline */
+.skill-tag {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+.skill-tag--indigo { background: rgba(99, 102, 241, 0.12); color: var(--primary-color); }
+.skill-tag--green { background: rgba(16, 185, 129, 0.12); color: var(--secondary-color); }
+.skill-tag--amber { background: rgba(245, 158, 11, 0.12); color: var(--accent-color); }
+.skill-tag--violet { background: rgba(139, 92, 246, 0.12); color: #8b5cf6; }
+.skill-tag--pink { background: rgba(236, 72, 153, 0.12); color: #ec4899; }
+.skill-tag--teal { background: rgba(20, 184, 166, 0.12); color: #14b8a6; }
+.skill-tag--orange { background: rgba(249, 115, 22, 0.12); color: #f97316; }
+
+body.terminal-theme .skill-tag,
+body.terminal-theme .skill-tag--indigo,
+body.terminal-theme .skill-tag--green,
+body.terminal-theme .skill-tag--amber,
+body.terminal-theme .skill-tag--violet,
+body.terminal-theme .skill-tag--pink,
+body.terminal-theme .skill-tag--teal,
+body.terminal-theme .skill-tag--orange {
+  background: rgba(0, 255, 157, 0.08) !important;
+  color: #00ff9d !important;
+  border: 1px solid rgba(0, 255, 157, 0.28);
+}
+
+/* Homepage bottom CTA — class-based so dark theme can override inline */
+.homepage-cta {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.homepage-cta .homepage-cta-title {
+  color: white;
+  -webkit-text-fill-color: white;
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+}
+
+.homepage-cta .homepage-cta-lead {
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 1.15rem;
+  line-height: 1.8;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.project-highlights-box {
+  margin-top: 3rem;
+  padding: 2rem;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.06), rgba(16, 185, 129, 0.06));
+  border-radius: 16px;
+  border: 2px dashed rgba(99, 102, 241, 0.2);
+}
+
+.project-highlights-box h3 {
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-size: 1.3rem;
+}
+
+/* ---------- Dark theme: beat inline styles on heroes & CTA ---------- */
+body.terminal-theme .hero-banner,
+body.terminal-theme .homepage-cta {
+  background: rgba(10, 14, 39, 0.92) !important;
+  color: #00ff9d !important;
+  border: 1px solid rgba(0, 255, 157, 0.35) !important;
+  box-shadow: 0 0 50px rgba(0, 212, 255, 0.12) !important;
+}
+
+body.terminal-theme .hero-banner h1,
+body.terminal-theme .hero-banner .modern-card-title,
+body.terminal-theme .homepage-cta .homepage-cta-title {
+  color: #00ff9d !important;
+  -webkit-text-fill-color: #00ff9d !important;
+  text-shadow: 0 0 24px rgba(0, 255, 157, 0.35) !important;
+}
+
+body.terminal-theme .hero-banner p,
+body.terminal-theme .hero-banner .modern-card-header p {
+  color: #8b9dc3 !important;
+}
+
+body.terminal-theme .hero-banner strong {
+  color: #00ff9d !important;
+}
+
+body.terminal-theme .hero-banner .glass {
+  background: rgba(0, 255, 157, 0.08) !important;
+  border: 1px solid rgba(0, 255, 157, 0.35) !important;
+  color: #a7f3d0 !important;
+}
+
+body.terminal-theme .homepage-cta .homepage-cta-lead,
+body.terminal-theme .homepage-cta p {
+  color: #8b9dc3 !important;
+}
+
+body.terminal-theme .homepage-cta .homepage-cta-title {
+  color: #00ff9d !important;
+}
+
+body.terminal-theme .homepage-cta a.modern-btn:not(.kaveen-glow-btn) {
+  background: rgba(0, 255, 157, 0.12) !important;
+  color: #00ff9d !important;
+  border: 2px solid rgba(0, 255, 157, 0.45) !important;
+}
+
+body.terminal-theme .homepage-cta a.kaveen-glow-btn {
+  background: linear-gradient(135deg, #00ff9d, #00d4ff) !important;
+  color: #0a0e27 !important;
+  border: none !important;
+  box-shadow: 0 0 28px rgba(0, 255, 157, 0.35) !important;
+}
+
+body.terminal-theme .homepage-cta a[style*="background: white"] {
+  background: rgba(0, 212, 255, 0.2) !important;
+  color: #00ff9d !important;
+}
+
+body.terminal-theme .featured-badge {
+  background: rgba(0, 255, 157, 0.15) !important;
+  color: #00ff9d !important;
+  border: 1px solid rgba(0, 255, 157, 0.5) !important;
+  -webkit-text-fill-color: #00ff9d !important;
+  box-shadow: 0 0 20px rgba(0, 255, 157, 0.2);
+}
+
+body.terminal-theme .homepage-cta .homepage-cta-footer {
+  border-top-color: rgba(0, 255, 157, 0.25) !important;
+}
+
+body.terminal-theme .homepage-cta .homepage-cta-footer > p {
+  color: #8b9dc3 !important;
+}
+
+body.terminal-theme .homepage-cta .homepage-cta-social-link {
+  color: #00ff9d !important;
+  background: rgba(0, 255, 157, 0.1) !important;
+  border: 1px solid rgba(0, 255, 157, 0.35) !important;
+}
+
+body.terminal-theme .project-highlights-box {
+  background: rgba(15, 23, 42, 0.7) !important;
+  border-color: rgba(0, 255, 157, 0.25) !important;
+}
+
+body.terminal-theme .project-highlights-box h3 {
+  color: #00ff9d !important;
+}
+
+body.terminal-theme .project-highlights-box .highlight-item-title {
+  color: #00ff9d !important;
+}
+
+body.terminal-theme .project-highlights-box .highlight-item-desc {
+  color: #8b9dc3 !important;
+}
+
+body.terminal-theme .page-hero-bg-orb {
+  opacity: 0.12 !important;
 }
 
